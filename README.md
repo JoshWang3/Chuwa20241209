@@ -40,6 +40,9 @@ git push origin firstName_lastName/main
 example: 
 HW1:
 git checkout -b firstName_lastName/hw1
+
+### Writing your hw
+
 git add .
 git commit -m "commit_message"
 git push origin firstName_lastName/hw1
@@ -47,11 +50,7 @@ git push origin firstName_lastName/hw1
 
 
 
-### 4. Write your assignment under this feature branch.
-
-
-
-### 5. Push your local branch to Github
+### 4. Push your local branch to Github
 
 ```bash
 git push origin firstName_lastName/hw1
@@ -59,9 +58,9 @@ git push origin firstName_lastName/hw1
 
 
 
-### 6. Raise PR
+### 5. Raise PR
 
-open your github, **Compare and Pull** or **New pull request**
+Open github, **Compare and Pull** or **New pull request**
 
 - to `firstName_lastName/main`
 - from `firstName_lastName/hw1`
