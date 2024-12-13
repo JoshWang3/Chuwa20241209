@@ -27,7 +27,8 @@
 24. Ignoring Markdown formatting
 25. Disabling Markdown rendering
 
-## 2. Practice git using the platform. List the git commands you learned [Learn Git Branching](https://learngitbranching.js.org/)
+## 2. Practice git using the platform. List the git commands you learned 
+## [Learn Git Branching](https://learngitbranching.js.org/)
 1. Basic Operations
 - ```git init```: Initialize a new Git repository.
 - ```git clone <repo_url>```: Clone a remote repository to your local machine.
