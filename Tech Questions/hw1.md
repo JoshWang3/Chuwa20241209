@@ -100,7 +100,10 @@ git stash pop
 - Install: Adds the package to the local repository for use by other projects.
   - Command: mvn install
 
-
+## 12. What is plugins in maven, list some plugins.
+Maven plugins add extra functionality to the build process:
+- maven-compiler-plugin: Compiles source code.
+- maven-surefire-plugin – Runs unit tests.
 
 
 
