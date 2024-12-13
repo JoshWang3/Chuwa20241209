@@ -1,6 +1,7 @@
 # Homework 1
 ## 1. Learn MarkDown and show all of basic usage in the ShortQuestions/README.md
 ## [Basic Writing And Formatting Syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
+```
 1. Headings
 2. Styling Text
 3. Quoting text
@@ -26,6 +27,7 @@
 23. Hiding content with comments
 24. Ignoring Markdown formatting
 25. Disabling Markdown rendering
+```
 
 ## 2. Practice git using the platform. List the git commands you learned 
 ## [Learn Git Branching](https://learngitbranching.js.org/)
