@@ -1,9 +1,9 @@
 # Homework 1
 ## 1. Learn MarkDown and show all of basic usage in the ShortQuestions/README.md
-[Basic Writing And Formatting Syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
+## [Basic Writing And Formatting Syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
 
 
-## 2. Practice git using the platform. list the git commands you learned [Learn Git Branching](https://learngitbranching.js.org/)
+## 2. Practice git using the platform. List the git commands you learned [Learn Git Branching](https://learngitbranching.js.org/)
 1. Basic Operations
 - git init: Initialize a new Git repository.
 - git clone <repo_url>: Clone a remote repository to your local machine.
