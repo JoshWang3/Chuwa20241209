@@ -1,4 +1,57 @@
 # Homework 1
+## 1. Learn MarkDown and show all of basic usage in the ShortQuestions/README.md
+[md learning doc](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
+
+
+## 2. Practice git using the platform. list the git commands you learned [git exercises](https://learngitbranching.js.org/)
+1. Basic Operations
+- git init: Initialize a new Git repository.
+- git clone <repo_url>: Clone a remote repository to your local machine.
+- git status: Check the current status of your working directory (modified, untracked files, etc.).
+- git add <file>: Stage a specific file for the next commit.
+- git add .: Stage all changes in the current directory.
+- git commit -m "description message": Commit staged changes with a descriptive message.
+- git log: View the commit history.
+- git diff: Show differences between the working directory and the staging area.
+
+2. Branch Management
+- git branch: List all branches in the repository.
+- git branch <branch_name>: Create a new branch.
+- git checkout <branch_name>: Switch to a specific branch.
+- git checkout -b <branch_name>: Create and switch to a new branch.
+- git merge <branch_name>: Merge a specified branch into the current branch.
+- git branch -d <branch_name>: Delete a branch (only if merged).
+- git branch -D <branch_name>: Force delete a branch.
+
+3. History and Changes
+- git log --oneline: View the commit history in a concise format.
+- git revert <commit_hash>: Create a new commit that undoes changes made by a previous commit.
+- git reset <commit_hash>: Move the HEAD to a specific commit (can alter commit history).
+- git cherry-pick <commit_hash>: Apply changes from a specific commit to the current branch.
+- git stash: Temporarily save changes that are not ready to commit.
+- git stash pop: Reapply the most recently stashed changes and remove it from the stash.
+
+4. Tags
+- git tag: List all tags in the repository.
+- git tag <tag_name>: Create a new tag pointing to the current commit.
+- git tag -d <tag_name>: Delete a tag locally.
+- git push origin <tag_name>: Push a tag to the remote repository.
+- git describe: Show the most recent tag reachable from the current commit.
+
+5. Remote Repository
+- git remote -v: List the remote repositories linked to the local repository.
+- git pull: Fetch and merge changes from the remote repository into the current branch.
+- git push: Push local changes to the remote repository.
+- git push origin <branch_name>: Push a specific branch to the remote repository.
+- git fetch: Fetch changes from the remote repository without merging.
+
+6. Rewriting History
+- git rebase <branch_name>: Reapply commits from the current branch onto another branch, creating a cleaner commit history.
+- git rebase -i: Interactively rebase to edit, squash, or reorder commits.
+
+7. Viewing and Comparing
+- git show <commit_hash>: Show detailed information about a specific commit.
+- git blame <file>: Show commit history for each line of a file.
 
 ## 3. What is the basic steps to init a git repo in you local ?
 1. Navigate to the project directory:
