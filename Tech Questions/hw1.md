@@ -95,9 +95,9 @@ git stash pop
 7. Deploy: Push to a remote repository.
 
 ## 11. what is the difference between package and install in maven lifecycle ?
-1. Package: Creates the final distributable (e.g., JAR/WAR file).
+- Package: Creates the final distributable (e.g., JAR/WAR file).
   - Command: mvn package
-2. Install: Adds the package to the local repository for use by other projects.
+- Install: Adds the package to the local repository for use by other projects.
   - Command: mvn install
 
 ## 12. What is plugins in maven, list some plugins.
