@@ -95,15 +95,20 @@ git stash pop
 7. Deploy: Push to a remote repository.
 
 ## 11. what is the difference between package and install in maven lifecycle ?
-- Package: Creates the final distributable (e.g., JAR/WAR file).
+1. Package: Creates the final distributable (e.g., JAR/WAR file).
   - Command: mvn package
-- Install: Adds the package to the local repository for use by other projects.
+2. Install: Adds the package to the local repository for use by other projects.
   - Command: mvn install
 
 ## 12. What is plugins in maven, list some plugins.
 Maven plugins add extra functionality to the build process:
-- maven-compiler-plugin: Compiles source code.
-- maven-surefire-plugin – Runs unit tests.
+1. maven-compiler-plugin: Compiles source code.
+2. maven-surefire-plugin: Runs unit tests.
+3. maven-jar-plugin: Creates JAR files.
+4. maven-clean-plugin: Cleans project directories.
+5. maven-deploy-plugin: Deploys artifacts to remote repositories.
+6. maven-war-plugin: Packages web applications (WAR).
+7. maven-shade-plugin: Creates an uber-jar with dependencies.
 
 
 
