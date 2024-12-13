@@ -97,7 +97,7 @@ git stash pop
 ## 11. what is the difference between package and install in maven lifecycle ?
 - Package: Creates the final distributable (e.g., JAR/WAR file).
   - Command: mvn package
--Install: Adds the package to the local repository for use by other projects.
+- Install: Adds the package to the local repository for use by other projects.
   - Command: mvn install
 
 
