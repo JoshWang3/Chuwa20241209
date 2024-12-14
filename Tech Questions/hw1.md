@@ -6,7 +6,7 @@
 # Header 1
 ## Header 2
 ### Header 3
-**bold**
+**bold** 
 _italic_
 ```
 
