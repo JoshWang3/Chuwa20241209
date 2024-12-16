@@ -1,21 +1,23 @@
-package HW2.CreditCardNotification.model;
+package HW2.CreditCardNotification;
 
-public class userInfo {
+public class UserInfo {
     private String firstName;
     private String lastName;
     private String email;
     private String phone;
     private String whatsAppId;
+    private String preference;
 
-    public userInfo() {
+    public UserInfo() {
     }
 
-    public userInfo(String firstName, String lastName, String email, String phone, String whatsAppId) {
+    public UserInfo(String firstName, String lastName, String email, String phone, String whatsAppId, String preference) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
         this.whatsAppId = whatsAppId;
+        this.preference = preference;
     }
 
     public String getFirstName() {
@@ -56,5 +58,13 @@ public class userInfo {
 
     public void setWhatsAppId(String whatsAppId) {
         this.whatsAppId = whatsAppId;
+    }
+
+    public String getPreference() {
+        return preference;
+    }
+
+    public void setPreference(String preference) {
+        this.preference = preference;
     }
 }
