@@ -75,6 +75,8 @@ Differences:
 2. Abstraction defines a **common** base for a hierarchy of related classes. Interface define a behavior that multiple unrelated classes can do or perform.
 
 ### 15. Design a parking lot
+Please check /Coding/HW2/hw20/ParkingLot
+Has not implemented fee calculation or payment way yet.
 
 ### 16. What are Queue interface implementations and what are the differences and when to use what?
 1. PriorityQueue(class): when elements of the queue are needed to be processed according to the priority (e.g. heap sort)
