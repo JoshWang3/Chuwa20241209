@@ -4,7 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0757a1a2-b1cf-40a5-b9eb-a76742b4fd08" name="Changes" comment="" />
+    <list default="true" id="0757a1a2-b1cf-40a5-b9eb-a76742b4fd08" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Coding/hw21/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coding/Parking Lot/parkinglot/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coding/Parking Lot/parkinglot/ParkingLot.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coding/Parking Lot/parkinglot/ParkingSpot.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coding/Parking Lot/parkinglot/Ticket.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coding/Parking Lot/parkinglot/Vehicle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coding/parkinglot.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coding/parkinglot/out/production/parkinglot/parkinglot/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coding/parkinglot/out/production/parkinglot/parkinglot/ParkingLot.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coding/parkinglot/out/production/parkinglot/parkinglot/ParkingSpot.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coding/parkinglot/out/production/parkinglot/parkinglot/Ticket.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coding/parkinglot/out/production/parkinglot/parkinglot/Vehicle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coding/parkinglot/out/production/parkinglot/parkinglot/VehicleType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coding/parkinglot/parkinglot.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Coding/hw20/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-core/src/main/java/com/chuwa/learn/Main.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,6 +34,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -47,6 +70,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main (1).executor": "Run",
+    "Application.Main (2).executor": "Run",
     "Application.Main.executor": "Run",
     "Application.parkinglot.Main.executor": "Run",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
@@ -67,19 +91,26 @@
       <recent name="$PROJECT_DIR$/Coding/hw2/ParkingLot/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.parkinglot.Main">
+  <component name="RunManager" selected="Application.Main (2)">
     <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="parking-lot" />
+      <module name="hw20" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="hw21" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="17" />
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-19" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="java-core" />
+      <module name="hw20" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -90,7 +121,7 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="parkinglot.*" />
-          <option name="ENABLED" value="true" />
+          <option name="ENABLED" value="false" />
         </pattern>
       </extension>
       <method v="2">
@@ -110,8 +141,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.Main (2)" />
+      <item itemvalue="Application.Main (1)" />
+      <item itemvalue="Application.parkinglot.Main" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main (2)" />
         <item itemvalue="Application.parkinglot.Main" />
         <item itemvalue="Application.Main (1)" />
       </list>
