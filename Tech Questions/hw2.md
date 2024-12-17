@@ -1,5 +1,18 @@
 1. OOP implementation:
-   1. Encapsulation:
+   1. Encapsulation:"class Pet{ 
+       private String name; 
+       public Pet(String name) { this.name = name;} 
+       public String getName() { return this.name;}
+       public String speak() {return "";}
+      }"
+   2. Polymorphism: "class Dog extends Pet {
+       @Override
+       public String speak() {return "Bark.";}
+      }"
+   3. Inheritance: "
+        Dog myDog = new Dog("A");
+        String name = myDog.getName(); // name = "A" (inherited from the parent class)
+      "
 2. Wrapper class:
    1. Wrapper classes are object representations of primitive types. 
    2. Wrapper classes provide static methods. Wrapper classes allow automatic conversion between primitives and objects.
