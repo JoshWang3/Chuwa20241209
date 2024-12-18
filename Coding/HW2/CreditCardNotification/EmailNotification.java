@@ -17,10 +17,11 @@ public class EmailNotification implements NotificationService{
 
     @Override
     public void broadcastNotification(List<UserInfo> users, String broadcastMessage) {
-        for (UserInfo user : users.stream().filter(u -> "email".equalsIgnoreCase(u.getPreference())).toList()) {
+        for (UserInfo user : users.stream()
+                .filter(u -> "email".equalsIgnoreCase(u.getPreference()))
+                .collect(Collectors.toList())) {
             System.out.println(broadcastMessage);
         }
     }
-
 
 }
