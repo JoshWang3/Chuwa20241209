@@ -1,7 +1,11 @@
 ## Learn Java generics by reading and practicing following code: https://github.com/CTYue/chuwa-eij-tutorial/tree/main/02-java-core/src/main/java/com/chuwa/tutorial/t01_basic/generic
+    see folder: Coding/hw_Java8/generic/
 ## Read the following code repo and type it one by one by yourself: https://github.com/CTYue/chuwa-eij-tutorial/tree/main/02-java-core/src/main/java/com/chuwa/tutorial/t06_java8/features
+    see folder: Coding/hw_Java8/features_java8/
 ## Practice following stream API exercises at least 3 times: https://github.com/gavinklfong/stream-api-exercises/blob/main/src/test/java/space/gavinklfong/demo/streamapi/StreamApiTest.java
+    see folder: Coding/hw_Java8/stream_exercise/
 ## Practice Optional methods at least 2 times: https://github.com/CTYue/chuwa-eij-tutorial/blob/main/02-java-core/src/main/java/com/chuwa/tutorial/t06_java8/exercise/ShoppingCartUtil.java
+    see folder: Coding/hw_Java8/option_exercise/
 ## Discuss best practices on nullptr exception prevention, provide code snippet for each practice that you mentioned.
 ```java
 import org.apache.commons.lang3.StringUtils;
@@ -420,7 +424,7 @@ public class Main {
 | Elements are easy to access No direct way of accessing specific elements  |Is a data store Is an API to process the data                                         |
 
 ## Implement Stream API's filter and map methods by your self.
-    see folder: Coding/hw_Java8/personalized_stream_api
+    see folder: Coding/hw_Java8/personalized_stream_api/
 ```java
 import java.util.ArrayList;
 import java.util.Comparator;
