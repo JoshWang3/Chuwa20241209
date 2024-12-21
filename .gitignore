@@ -4,6 +4,7 @@
 
 ### Code ###
 .vscode/*
+/out/
 
 ### Java ###
 # Compiled class file
