@@ -1,4 +1,4 @@
-public class InheritanceExample {
+public class Inheritance {
     public static void main(String[] args) {
         Shape shape = new Shape("Generic Shape");
         shape.displayInfo();
