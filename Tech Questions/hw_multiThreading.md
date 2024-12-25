@@ -539,7 +539,6 @@ public class MyClass {
             exceptionally(Function<Throwable, T>): Handles exceptions in the computation.
 
 ## 22. Type the code by your self and try to understand it. (package com.chuwa.tutorial.t08_multithreading)
-
 ## 23. Write a code to create 2 threads, one thread print 1,3,5,7,9, another thread print 2,4,6,8,10. (solution is in com.chuwa.tutorial.t08_multithreading.c05_waitNotify.OddEventPrinter) 
     1. One solution use synchronized and wait notify: see Coding/hw5/odd_even_printer/synchronized_keyword/
     2. One solution use ReentrantLock and await, signal: see Coding/hw5/odd_even_printer/reentrant_lock/
