@@ -94,7 +94,7 @@ https://github.com/CTYue/chuwa-eij-tutorial/blob/main/02-java-core/src/main/java
 
 	(1), Lambda Expressions:\
 	Lambda expressions allow for more concise representation of anonymous classes with a single method.\
-	Example:\
+	Example:
 	```
 	List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
 	numbers.forEach(n -> System.out.println(n));
@@ -102,7 +102,7 @@ https://github.com/CTYue/chuwa-eij-tutorial/blob/main/02-java-core/src/main/java
 
 	(2),Functional Interfaces:\
 	Functional interfaces are interfaces with a single abstract method, which can be implemented using lambda expressions.\
-	Example:\
+	Example:
 	```
 	@FunctionalInterface
 	interface MyInterface {
@@ -113,7 +113,7 @@ https://github.com/CTYue/chuwa-eij-tutorial/blob/main/02-java-core/src/main/java
 	```
 
 	(3),Stream API:\
-	The Stream API enables functional-style operations on streams of elements.\
+	The Stream API enables functional-style operations on streams of elements.
 	```
 	List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 	int sum = numbers.stream()
@@ -207,8 +207,10 @@ https://github.com/CTYue/chuwa-eij-tutorial/blob/main/02-java-core/src/main/java
 9. Explain Method Reference with code samples?
 
 	Method references in Java 8 provide a concise way to refer to methods or constructors. 
-	They are essentially shorthand notations for lambda expressions that call a specific method.\ 
-	There are four types of method references:\
+	They are essentially shorthand notations for lambda expressions that call a specific method.
+	
+	There are four types of method references:
+	
 	(1),Reference to a static method:
 	```
 		List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
@@ -242,10 +244,10 @@ https://github.com/CTYue/chuwa-eij-tutorial/blob/main/02-java-core/src/main/java
 
 	Lambdas can access variables that are effectively final from the surrounding scope. \
 	Variables outside the lambda expression are not modified within the lambda.\
-	We can access and use variables from the surrounding scope in a lambda, but those variables must be "effectively final".\ 
+	We can access and use variables from the surrounding scope in a lambda, but those variables must be "effectively final". 
 	
 	Effectively final means that the variable's value is not modified after initialization, even though it might not be explicitly declared as final.\
-	Lambda expressions can capture and use such variables from the enclosing scope.\
+	Lambda expressions can capture and use such variables from the enclosing scope.
 	
 	Example:
 	```
@@ -327,7 +329,7 @@ https://github.com/CTYue/chuwa-eij-tutorial/blob/main/02-java-core/src/main/java
 	count(): Counts the number of elements in the stream.\
 	findFirst(): Returns the first element of the stream.\
 	anyMatch(): Checks if any element in the stream matches a predicate.\
-	allMatch(): Checks if all elements in the stream match a predicate.	\
+	allMatch(): Checks if all elements in the stream match a predicate.
 	
 
 13. Demontrate the most commonly used Intermediate operations in Stream API, with code snippet.
