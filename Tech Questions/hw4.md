@@ -1,24 +1,22 @@
-1. Learn Java generics by reading and practicing following code:\
-https://github.com/CTYue/chuwa-eij-tutorial/tree/main/02-java-core/src/main/java/com/chuwa/tutorial/t0
-1_basic/generic
+## HW4: HW_Java8
+
+### 1. Learn Java generics by reading and practicing following code:\
+https://github.com/CTYue/chuwa-eij-tutorial/tree/main/02-java-core/src/main/java/com/chuwa/tutorial/t01_basic/generic
 
 
-2. Read the follwoing code repo and type it one by one by yourself.\
-https://github.com/CTYue/chuwa-eij-tutorial/tree/main/02-java-core/src/main/java/com/chuwa/tutorial/t0
-6_java8/features
+### 2. Read the follwoing code repo and type it one by one by yourself.\
+https://github.com/CTYue/chuwa-eij-tutorial/tree/main/02-java-core/src/main/java/com/chuwa/tutorial/t06_java8/features
 
 
-3. Practice following stream API exercises at least 3 times\
-https://github.com/gavinklfong/stream-api-exercises/blob/main/src/test/java/space/gavinklfong/demo/str
-eamapi/StreamApiTest.java
+### 3. Practice following stream API exercises at least 3 times\
+https://github.com/gavinklfong/stream-api-exercises/blob/main/src/test/java/space/gavinklfong/demo/streamapi/StreamApiTest.java
 
 
-4. Practice Optional methods at least 2 times\
-https://github.com/CTYue/chuwa-eij-tutorial/blob/main/02-java-core/src/main/java/com/chuwa/tutorial/t0
-6_java8/exercise/ShoppingCartUtil.java
+### 4. Practice Optional methods at least 2 times\
+https://github.com/CTYue/chuwa-eij-tutorial/blob/main/02-java-core/src/main/java/com/chuwa/tutorial/t06_java8/exercise/ShoppingCartUtil.java
 
 
-5. Discuss best practices on nullptr exception prevention, provide code snippet for each practice that you mentioned.
+### 5. Discuss best practices on nullptr exception prevention, provide code snippet for each practice that you mentioned.
 
 	(1), Always check for null first
 	```
@@ -48,11 +46,11 @@ https://github.com/CTYue/chuwa-eij-tutorial/blob/main/02-java-core/src/main/java
 
 	(3), Use try-catch for Defensive Exception Handling 
 	```
-		try {
-			System.out.println(input.length());
-		} catch (NullPointerException e) {
-			System.out.println("Input is null!");
-		}
+	try {
+		System.out.println(input.length());
+	} catch (NullPointerException e) {
+		System.out.println("Input is null!");
+	}
 	```
 
 	(4), It it better to use second way than the first way in below code:
@@ -90,7 +88,7 @@ https://github.com/CTYue/chuwa-eij-tutorial/blob/main/02-java-core/src/main/java
 	```
 	
 
-6. Discuss Java 8 new features with code snippet.
+### 6. Discuss Java 8 new features with code snippet.
 
 	(1), Lambda Expressions:\
 	Lambda expressions allow for more concise representation of anonymous classes with a single method.\
@@ -148,7 +146,7 @@ https://github.com/CTYue/chuwa-eij-tutorial/blob/main/02-java-core/src/main/java
 	optional.ifPresent(s -> System.out.println(s.length()));
 	```
 	
-7. What are the advantages of the Optional class?
+### 7. What are the advantages of the Optional class?
 
 	1, Avoid NullPointerException\
 	Provides Defaults: Easily provides fallback values with orElse().
@@ -176,7 +174,7 @@ https://github.com/CTYue/chuwa-eij-tutorial/blob/main/02-java-core/src/main/java
 	   Optional provides methods like ifPresent() and ifPresentOrElse() to specify alternative actions when a value is present or absent.
 	
 
-8. Explain Functional Interface and Lambda with code samples.
+### 8. Explain Functional Interface and Lambda with code samples.
 
 	A functional interface is an interface that contains exactly one abstract method. It can have multiple default or static methods, but only one abstract method. 
 	Functional interfaces are often used as the basis for lambda expressions.
@@ -204,7 +202,7 @@ https://github.com/CTYue/chuwa-eij-tutorial/blob/main/02-java-core/src/main/java
 	numbers.forEach(method);		
 	```
 
-9. Explain Method Reference with code samples?
+### 9. Explain Method Reference with code samples?
 
 	Method references in Java 8 provide a concise way to refer to methods or constructors. 
 	They are essentially shorthand notations for lambda expressions that call a specific method.
@@ -240,7 +238,7 @@ https://github.com/CTYue/chuwa-eij-tutorial/blob/main/02-java-core/src/main/java
 	```
 	
 
-10. Explain "Lambda can use unchanged variable outside of lambda", with code snippet.
+### 10. Explain "Lambda can use unchanged variable outside of lambda", with code snippet.
 
 	Lambdas can access variables that are effectively final from the surrounding scope. \
 	Variables outside the lambda expression are not modified within the lambda.\
@@ -270,13 +268,13 @@ https://github.com/CTYue/chuwa-eij-tutorial/blob/main/02-java-core/src/main/java
 
 	```
 
-11. Can a functional interface extend/inherit another interface?
+### 11. Can a functional interface extend/inherit another interface?
 
-	Yes, a functional interface in Java can extend or inherit from another interface. 	
-	But the resulting interface must still have exactly one abstract method. 
+	Yes, a functional interface in Java can extend or inherit from another interface.\
+	But the resulting interface must still have exactly one abstract method. \
 	The core principle of a functional interface is that it can only have one abstract method. 
 	
-	Functional interfaces can also extend non-functional interfaces, 
+	Functional interfaces can also extend non-functional interfaces, \
 	but they must adhere to the rule of having only one abstract method in total after inheritance.
 	
 	Example:
@@ -301,13 +299,13 @@ https://github.com/CTYue/chuwa-eij-tutorial/blob/main/02-java-core/src/main/java
 	MyInterface has no abstract methods, only a default and a static method.	
 	```
 
-12. What are Intermediate and Terminal operations?
+### 12. What are Intermediate and Terminal operations?
 	
 	(1),Intermediate Operations:\
     Lazy Evaluation: Intermediate operations are not executed immediately when invoked. \
 	They are only executed when a terminal operation is called.\
     Return a New Stream: They return a new stream, which means that multiple intermediate operations can be chained together to build a pipeline of operations.	\
-    Stateful or Stateless: Some intermediate operations are stateless (e.g., map(), filter()) while others may require maintaining some state (e.g., distinct(), sorted()).\
+    Stateful or Stateless: Some intermediate operations are stateless (e.g., map(), filter()) while others may require maintaining some state (e.g., distinct(), sorted()).
 	
 	Examples of Intermediate Operations:\
     filter(): Filters elements based on a condition.\
@@ -320,7 +318,7 @@ https://github.com/CTYue/chuwa-eij-tutorial/blob/main/02-java-core/src/main/java
 	(2),Terminal Operations:\
 	They perform an action on the stream and produce a result \
 	They trigger the execution of all preceding intermediate operations.\
-	Terminal operations mark the end of the stream pipeline, and the stream cannot be used further after a terminal operation is executed. \
+	Terminal operations mark the end of the stream pipeline, and the stream cannot be used further after a terminal operation is executed.
 
 	Examples:\
 	forEach(): Performs an action on each element of the stream.\
@@ -332,7 +330,7 @@ https://github.com/CTYue/chuwa-eij-tutorial/blob/main/02-java-core/src/main/java
 	allMatch(): Checks if all elements in the stream match a predicate.
 	
 
-13. Demontrate the most commonly used Intermediate operations in Stream API, with code snippet.
+### 13. Demontrate the most commonly used Intermediate operations in Stream API, with code snippet.
 
 	(1),filter():	Filters elements of the stream based on a given predicate (a boolean-valued function).
 	```
@@ -396,7 +394,7 @@ https://github.com/CTYue/chuwa-eij-tutorial/blob/main/02-java-core/src/main/java
 	System.out.println("Numbers after two: " + numbersAfterTwo);	// Output: Numbers after two: [3, 4, 5, 6, 7, 8, 9, 10]
 	```
 
-14. How are Collections different from Stream?
+### 14. How are Collections different from Stream?
 	
 	Collections are containers for storing data.\
 	Streams are a way to process data from a source (often a collection) in a declarative and efficient manner.
@@ -416,7 +414,7 @@ https://github.com/CTYue/chuwa-eij-tutorial/blob/main/02-java-core/src/main/java
 	Streams can be easily parallelized for performance gains, especially with large datasets.
 	
 
-15. Implement Stream API's filter  and map  methods by your self
+### 15. Implement Stream API's filter  and map  methods by your self
 	```
 	import java.util.ArrayList;
 	import java.util.Arrays;
