@@ -45,8 +45,8 @@ public class TestController {
         return JSON.toJSONString(list);
     }
 
-    @GetMapping("/mysql/")
-    public String updateAllPhone(@RequestParam Long id){
+    @GetMapping("/mysql/id")
+    public String deleteById(@RequestParam Long id){
        omsCompanyAddressDao.deleteByPrimaryKey(id);
         return JSON.toJSONString("SUCCESS");
     }
