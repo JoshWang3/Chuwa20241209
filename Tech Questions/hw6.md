@@ -4,9 +4,8 @@
 
 #### 1, Create oms_company_address  table
 
-oms_company_address:
-
 ```
+oms_company_address:
 #	字段	名称	数据类型	主键	⾮空	默认值	备注说明
 1	id	id	bigint	√	
 2	address_name	地址名称	varchar(200)
@@ -48,7 +47,9 @@ VALUES
 
 #### 3. Write a SQL query to fetch all data from oms_company_address  `table
 
+```
 SELECT * FROM oms_company_address;
+```
 
 #### 4. Write a SQL query to fetch top 3 records from oms_company_address  table
 
@@ -80,13 +81,15 @@ LIMIT 1;
 
 #### 1, Create test DB
 
+```
 use test;
-
+```
 
 #### 2. Create oms_company_address  collection  (method: createCollection() )
 
+```
 db.createCollection("oms_company_address");
-
+```
 
 #### 3. Insert few random entries to oms_company_address  collection (method: insert() )
 
@@ -157,26 +160,31 @@ db.oms_company_address.insert([
 
 #### 4. Read one entry from oms_company_address  collection (method: find() )
 
+```
 db.oms_company_address.find().limit(1);
 
 db.oms_company_address.find({ id: 1 }).limit(1);
-
+```
 
 #### 5. Read all entries from oms_company_address  collection (method: find() )
 
+```
 db.oms_company_address.find();
-
+```
 
 #### 6. Update one entry from oms_company_address collection (method: update() or save() )
 
+```
 db.oms_company_address.update(
   { id: 1 },  // Filter
   { $set: { phone: '999-9999-0000' } }  // Field update
 );
+```
 
 #### 7. Remove one entry from oms_company_address collection (method: remove() )
 
+```
 db.oms_company_address.remove({ id: 1 });
-
+```
 
 #### 8. (Optional) You can also try to create other tables that listed above
