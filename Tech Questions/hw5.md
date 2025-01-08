@@ -293,12 +293,47 @@ t.run():
 	It is often used when a thread doesn't have critical work to do for the moment but wants to be cooperative and allow other threads to execute, especially when threads have the same priority.
 	
 ### 13. What is ThreadPool? How many types of ThreadPool? What is the TaskQueue in ThreadPool?
+	
 
 
 ### 14. Which Library is used to create ThreadPool? Which Interface provide main functions of thread-pool?
 
 
+
 ### 15. How to submit a task to ThreadPool?
 
 
+
 ### 16. What is the advantage of ThreadPool?
+
+
+
+### 17. Difference between shutdown() and shutdownNow() methods of executor
+
+
+
+### 18. What is Atomic classes? How many types of Atomic classes? Give me some code example of Atomic classes and its main methods. when to use it?
+
+
+
+### 19. What is the concurrent collections? Can you list some concurrent data structure (Thread-safe)
+
+
+
+### 20. What kind of locks do you know? What is the advantage of each lock?
+
+
+
+### 21. What is future and completableFuture? List some main methods of ComplertableFuture.
+
+
+
+### 22. Type the code by your self and try to understand it. (package com.chuwa.tutorial.t08_multithreading)
+
+
+
+### 23. Write a code to create 2 threads, one thread print 1,3,5,7,9, another thread print 2,4,6,8,10. (solution is in com.chuwa.tutorial.t08_multithreading.c05_waitNotify.OddEventPrinter)
+
+###	1. One solution use synchronized and wait notify
+
+###	2. One solution use ReentrantLock and await, signal
