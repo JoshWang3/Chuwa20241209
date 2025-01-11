@@ -6,13 +6,11 @@
 
 ##### 5 GET APIs with different response type
 
-###### (1)
-
-https://catfact.ninja/fact
-
-GET https://catfact.ninja/fact
+###### (1) https://catfact.ninja/fact
 
 ```
+GET https://catfact.ninja/fact
+
 {
   "fact": "On average, cats spend 2/3 of every day sleeping. That means a nine-year-old cat has been awake for only three years of its life.",
   "length": 129
@@ -21,10 +19,9 @@ GET https://catfact.ninja/fact
 
 ###### (2) OpenWeatherMap API:
 
-
+```
 GET https://api.openweathermap.org/data/2.5/weather?q={seattle}
 
-```
 {
   "cod": 401,
   "message": "Invalid API key. Please see https://openweathermap.org/faq#error401 for more info."
@@ -34,11 +31,11 @@ GET https://api.openweathermap.org/data/2.5/weather?q={seattle}
 
 ###### (3) Google Maps:
 
+```
 https://maps.googleapis.com/maps/api/geocode/json
 
-GET https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=YOUR_API_KEY
+GET https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=API_KEY
 
-```
 {
    "results" : [
       {
@@ -107,9 +104,9 @@ GET https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+
 
 ###### (4) GitHub API
 
+```
 GET https://api.github.com/repos/JoshWang3/Chuwa20241209
 
-```
 {
   "id": 902210527,
   "node_id": "R_kgDONcaj3w",
@@ -218,10 +215,9 @@ GET https://api.github.com/repos/JoshWang3/Chuwa20241209
 }
 ```
 
-
+```
 GET https://api.github.com/repos/JoshWang3/Chuwa20241209/blob
 
-```
 {
 "message": "Not Found",
 "documentation_url": "https://docs.github.com/rest",
@@ -231,9 +227,9 @@ GET https://api.github.com/repos/JoshWang3/Chuwa20241209/blob
 
 ###### (5) Random User Generator API
 
+```
 GET https://randomuser.me/api/
 
-```
 {
   "results": [{
     "gender": "male",
@@ -264,14 +260,13 @@ GET https://randomuser.me/api/
 }
 ```
 
-
 ##### 5 Post API with json request body, please also paste the response here
 
 ###### (1)  Create a Todo Item
 
+```
 POST  https://api.todoist.com/rest/v1/tasks 
 
-```
 Request:
 {
     "content": "Buy groceries", 
@@ -289,9 +284,9 @@ Response:
 
 ###### (2)  JSONPlaceholder API - Create a Post
 
+```
 POST https://jsonplaceholder.typicode.com/posts
 
-```
 Request:
 {
   "title": "foo",
@@ -311,9 +306,9 @@ Response:
 
 ###### (3) ReqRes API - Create a User
 
+```
 POST https://reqres.in/api/users
 
-```
 Request:
 {
   "name": "John Lee",
@@ -329,12 +324,11 @@ Response:
 }
 ```
 
-
 ###### (4) Trello API - Create a Board
 
+```
 POST https://api.trello.com/1/boards/
 
-```
 Request:
 {
   "name": "My New Board",
@@ -345,7 +339,6 @@ Request:
   "key": "your-api-key",
   "token": "your-oauth-token"
 }
-
 
 Response:
 {
@@ -365,23 +358,21 @@ Response:
   ],
   "labels": []
 }
-
 ```
 
 ###### (5) OpenWeatherMap API,
 
+```
 Create an account to get an API key
 
-```
 POST https://api.openweathermap.org/data/2.5/weather
 
 Request:
 
 {
   "q": "Seattle",
-  "appid": "YOUR_API_KEY"
+  "appid": "API_KEY"
 }
-
 
 Response:
 
@@ -431,7 +422,6 @@ Response:
 
 ```
 
-
 ##### 3 PUT API with json request body, please also paste the response here
 
 
@@ -458,7 +448,6 @@ Response:
 
 ```
 
-
 ###### (2) OpenWeatherMap API (Update User Profile)
 
 ```
@@ -482,7 +471,6 @@ Response:
 }
 ```
 
-
 ###### (3) Reqres API (Update a User's Information)
 
 ```
@@ -504,8 +492,6 @@ Response:
 
 ```
 
-
-
 ##### 2 DELETE API
 
 ###### (1) JSONPlaceholder API (Delete a Post)
@@ -517,7 +503,6 @@ Response:
 {}
 
 ```
-
 
 ###### (2) Reqres API (Delete a User)
 
@@ -554,7 +539,6 @@ DELETE https://api.openweathermap.org/data/2.5/weather?q=London&appid=API_KEY
 
 ```
 
-
 ###### (3)  Reqres API: DELETE Request - 401 Unauthorized
 
 
@@ -577,7 +561,6 @@ DELETE https://jsonplaceholder.typicode.com/posts/1
 }
 
 ```
-
 
 ###### (5) GitHub API: DELETE Request - 204 No Content
 
