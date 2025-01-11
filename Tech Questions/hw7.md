@@ -20,12 +20,52 @@ GET https://catfact.ninja/fact
 ###### (2) OpenWeatherMap API:
 
 ```
-GET https://api.openweathermap.org/data/2.5/weather?q={seattle}
+GET https://api.openweathermap.org/data/2.5/weather?q=seattle&appid=API_KEY
 
 {
-  "cod": 401,
-  "message": "Invalid API key. Please see https://openweathermap.org/faq#error401 for more info."
+   "coord": {
+      "lon": -122.3321,
+      "lat": 47.6062
+   },
+   "weather": [
+      {
+         "id": 800,
+         "main": "Clear",
+         "description": "clear sky",
+         "icon": "01d"
+      }
+   ],
+   "base": "stations",
+   "main": {
+      "temp": 295.67,
+      "feels_like": 295.42,
+      "temp_min": 293.74,
+      "temp_max": 297.26,
+      "pressure": 1016,
+      "humidity": 72
+   },
+   "visibility": 16093,
+   "wind": {
+      "speed": 1.79,
+      "deg": 216
+   },
+   "clouds": {
+      "all": 0
+   },
+   "dt": 1647481940,
+   "sys": {
+      "type": 1,
+      "id": 4283,
+      "country": "US",
+      "sunrise": 1647464567,
+      "sunset": 1647512492
+   },
+   "timezone": -28800,
+   "id": 5809844,
+   "name": "Seattle",
+   "cod": 200
 }
+
 ```
 
 
@@ -212,16 +252,6 @@ GET https://api.github.com/repos/JoshWang3/Chuwa20241209
   "temp_clone_token": null,
   "network_count": 0,
   "subscribers_count": 2
-}
-```
-
-```
-GET https://api.github.com/repos/JoshWang3/Chuwa20241209/blob
-
-{
-"message": "Not Found",
-"documentation_url": "https://docs.github.com/rest",
-"status": "404"
 }
 ```
 
