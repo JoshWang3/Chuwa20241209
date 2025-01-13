@@ -17,11 +17,9 @@ public class Product {
     private Long id;
     private String name;
     private double price;
-    
-    // Getters and Setters
+        
 }
 ```
-
 
 ###### @Id
 
@@ -35,7 +33,6 @@ public class Product {
     private Long id;
     private String name;
     
-    // Getters and Setters
 }
 
 ```
@@ -52,7 +49,6 @@ public class Product {
     private Long id;
     private String name;
     
-    // Getters and Setters
 }
 ```
 
@@ -107,9 +103,6 @@ public class ProductController {
         return new Product(id, "Jacket", 99);
     }
 }
-
-
-
 ```
 
 ###### @RequestMapping
@@ -130,7 +123,6 @@ public class ProductController {
         return new Product(id, "Jean", 78);
     }
 }
-
 ```
 
 ###### @GetMapping, @PostMapping, @PutMapping, @DeleteMapping
@@ -154,7 +146,6 @@ public class ProductController {
         return product;
     }
 }
-
 ```
 
 ###### @PathVariable
@@ -168,7 +159,6 @@ Used to bind method parameters to path variables in the URL.
 public Product getProduct(@PathVariable Long id) {    
     return new Product(id, "Mouse", 29);
 }
-
 ```
 
 ###### @RequestBody
@@ -182,7 +172,6 @@ Used when the client sends data in the body
 public Product createProduct(@RequestBody Product product) {    
     return product;
 }
-
 ```
 
 #####  Service and Repository Annotations
@@ -215,13 +204,11 @@ import org.springframework.stereotype.Repository;
 public class ProductRepository {
 
 }
-
 ```
 
 ###### @Autowired
 
 ```
-
 Automatically injects dependencies into Spring beans. 
 Used to automatically inject dependencies into fields or constructors.
 
@@ -232,15 +219,12 @@ public class ProductService {
     private ProductRepository productRepository;
 
 }
-
-
 ```
 
 
 ###### @Transactional
 
 ```
-
 Used to define that a method or class should run within a transaction.
 
 @Service
@@ -251,11 +235,7 @@ public class ProductService {
         
     }
 }
-
 ```
-
-
-
 
 ##### Configuration Annotations
 
@@ -275,7 +255,6 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 }
-
 ```
 
 ###### @Configuration
@@ -312,7 +291,6 @@ public class Product {
     private String name;
  
 }
-
 ```
 
 ###### @Size
@@ -327,9 +305,7 @@ public class Product {
     private String name;
 
 }
-
 ```
-
 
 ###### @Email
 
@@ -342,7 +318,6 @@ public class User {
     @Email
 
 }
-
 ```
 
 ###### @Valid
@@ -357,5 +332,4 @@ import javax.validation.Valid;
 public ResponseEntity<Product> createProduct(@Valid @RequestBody Product product) { // Validation before entering the method    
     return ResponseEntity.ok(product);
 }
-
 ```
