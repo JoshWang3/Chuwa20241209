@@ -1,11 +1,9 @@
 ### HW8: Springboot-post
 
-##### 1, create a file to list all of the annotaitons you learned and known, and explain the usage and how do you
-##### understand it. you need to update it when you learn a new annotation. Please organize those annotations
-##### well, like annotations used by entity, annotations used by controller.
-##### 1. File name: annotations.md
-##### 2. you'd better also list a code example under the annotations.
+##### 1, create a file to list all of the annotaitons you learned and known, and explain the usage and how do you understand it. you need to update it when you learn a new annotation. Please organize those annotations well, like annotations used by entity, annotations used by controller. 
 
+1. File name: annotations.md
+2. you'd better also list a code example under the annotations.
 
 ##### 2, explain how the below annotaitons specify the table in database?
 
@@ -83,7 +81,7 @@ Exception Handling Layer:
 	Service layer processes the data
 	Controller formats the response, usually wrapping it in a ResponseEntity
 9, The DispatcherServlet sends the response back to Postman
-10, ostman receives the response with the operation result
+10, Postman receives the response with the operation result
 ```
 
 ##### 6, What is the application.properties? do you know application.yml?
