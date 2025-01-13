@@ -392,5 +392,8 @@ These naming differences arise from the fundamental design philosophies:
 
 ##### 10, Create a Project, name it with mongo-blog, write a POST API for mongo-blog, change database to MongoDB;
 
+```
+see Coding/hw8/mongo-blog
+```
 
 ##### 11, https://www.mongodb.com/compatibility/spring-boot
