@@ -118,8 +118,7 @@ import org.springframework.web.bind.annotation.*;
 public class ProductController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Product getProduct(@PathVariable Long id) {
-        // Logic to fetch product by id
+    public Product getProduct(@PathVariable Long id) {        
         return new Product(id, "Jean", 78);
     }
 }
@@ -186,8 +185,7 @@ Used at the class level to define service beans.
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProductService {
-    // Business logic methods
+public class ProductService {    
 }
 ```
 
