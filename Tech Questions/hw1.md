@@ -71,6 +71,9 @@ Every build follows the order of execution process: `clean -> prepare-resources 
 ### 11. What is the difference between package and install in maven lifecycle?
 The command `package` is used for taking the compiled code and package it in its distributable format, such as a JAR as per POM file, while `install` commands install the package (generated JAR file) into the local repository, and we can also use as a dependency in other projects locally. `install` phase comes after `package` phase.
 
+`package` -> target folder pwd
+`install` ->  ./m2 folder local
+
 ### 12. What is plugins in maven, list some plugins.
 In maven, plugins are used to perform tasks for a maven build. There are two types of plugins: 'build' and 'reporting'. Build plugins will be executed during the build and they should be configured in the <build/> element from the POM. Reporting plugins will be executed during the site generation and they should be configured in the <reporting/> element from the POM.
 

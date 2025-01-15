@@ -1,5 +1,6 @@
 package com.chuwa.redbook.service.impl;
 
+import com.chuwa.redbook.dao.PostJPQLRepository;
 import com.chuwa.redbook.dao.PostRepository;
 import com.chuwa.redbook.entity.Post;
 import com.chuwa.redbook.exception.ResourceNotFoundException;
@@ -15,9 +16,12 @@ import java.util.List;
 public class PostServiceImpl implements PostService {
 
     private final PostRepository postRepository;
+    private final PostJPQLRepository postJPQLRepository;
 
-    public PostServiceImpl(PostRepository postRepository) {
+
+    public PostServiceImpl(PostRepository postRepository, PostJPQLRepository postJPQLRepository) {
         this.postRepository = postRepository;
+        this.postJPQLRepository = postJPQLRepository;
     }
     @Override
     public PostDTO createPost(PostDTO postDTO) {
@@ -46,6 +50,12 @@ public class PostServiceImpl implements PostService {
         }
         // 3. return the list of PostDTOs
         return List.of();
+    }
+
+
+    @Override
+    public List<PostDto> getAllPostWithJPQL() {
+        return postJPQLRepository.getAllPostWithJPQL().stream().map(post -> mapToDTO(post)).collect(Collectors.toList());
     }
 
     @Override

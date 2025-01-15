@@ -17,4 +17,6 @@ public interface PostService {
     PostDTO updatePost(Long id, PostDTO postDTO);
 
     void deletePost(Long id);
+
+    List<PostDto> getAllPostWithJPQL();
 }

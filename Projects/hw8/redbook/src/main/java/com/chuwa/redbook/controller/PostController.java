@@ -31,6 +31,11 @@ public class PostController {
         return new ResponseEntity<List<PostDTO>>(response, HttpStatus.OK);
     }
 
+    @GetMapping("/jpql")
+    public List<PostDto> getAllPostsJPQL() {
+        return postService.getAllPostWithJPQL();
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<PostDTO> getPostById(@PathVariable Long id) {
         return new ResponseEntity<>(postService.getPost(id), HttpStatus.OK);
