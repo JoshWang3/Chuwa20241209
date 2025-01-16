@@ -1,0 +1,17 @@
+type Query {
+    postById(id: ID!): Post
+    getAllPost: [Post]
+}
+
+type Post {
+    id: ID
+    title: String
+    description: String
+    content: String
+    authorId: Int!
+}
+
+type Mutation {
+    createPost(title: String!, description: String!, content: String!, authorId: Int!) : Post!
+    updatePost(id: ID!, title: String!, description: String!, content: String!, authorId: Int!) : Post!
+}
