@@ -12,3 +12,31 @@
 @Service: marks a class as a service
 @Repository: marks a class as a repository and catches exceptions.
 @Transactional: manages transactions
+
+
+@Entity
+@Table
+@Id
+@GeneratedValue
+@Column
+@OneToMany
+@ManyToOne
+@ManyToMany
+@JoinColumn
+@JoinTable
+@Query
+@NamedQuery
+@NamedQueries
+@Transactional
+@Repository
+@Service
+@Controller
+@RestController
+@RequestMapping
+@GetMapping
+@PostMapping
+@PutMapping
+@DeleteMapping
+@Fetch
+@Cascade
+@Lob
