@@ -4,6 +4,9 @@
 .project
 .settings/
 target/
+*/target/
+*.war
+application.properties
 
 # CMake
 cmake-build-*/
