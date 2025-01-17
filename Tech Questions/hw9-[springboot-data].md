@@ -95,10 +95,20 @@
 19. What is Transaction? how to manage your transaction?
 
     > A transaction is a sequence of database operations that must be executed as a unit.
+    > Use annotations (like @Transactional) to declare transaction boundaries. EntityTransaction in plain JPA.
 
 20. What is hibernate Caching? Explain Hibernate caching mechanism in detail.
+    > Hibernate caching is a mechanism to improve application performance by storing frequently accessed data in memory.
+    > The first-level cache is associated with a single Session (in Hibernate) or EntityManager (in JPA). It's a mandatory cache and is enabled by default. It's cleared when the transaction is committed or rolled back, or when the session is closed.
+    > The second-level cache is associated with the SessionFactory (in Hibernate) or EntityManagerFactory (in JPA). It's shared by all sessions created by the same SessionFactory. It is an optional cache. cache provider (e.g., Ehcache, Redis, Infinispan).
+    > When an entity is loaded from the database, Hibernate first checks the first-level cache. If not found, it checks the second-level cache. If still not found, it loads the entity from the database, stores it in both the first-level and second-level caches (if enabled), and returns it to the application.
+    > Query Caching (Optional): Hibernate also provides query caching. When you execute a query, Hibernate can cache the query results (the IDs of the returned entities). Subsequent executions of the same query with the same parameters will retrieve the IDs from the query cache. Hibernate then uses these IDs to retrieve the actual entities from the second-level cache (or the database if not found in the second-level cache).
 21. What is the difference between first-level cache and second-level cache?
+    > see answer above
 22. How do you understand @Transactional? (https://github.com/TAIsRich/tutorial-transaction)
+    > It manages the transaction in a declarative way.
+    > No need to write explicit code to begin, commit, rollback transactions.
+    > Spring's AOP handles the transaction management.
 
 Hibernate core interfaces are:
 
