@@ -7,7 +7,6 @@
 @DeleteMapping
 @PutMapping
 
-
 @RequestMapping
 
 **<p style="text-align:center;">annotations used by entity</p>**
@@ -22,3 +21,7 @@
 @Value
 
 @ConfigurationProperties
+**<p style="text-align:center;">annotations used by other</p>**
+@Transactional - manage sessions and transactions
+@Autowired
+@Valid - check request body/params

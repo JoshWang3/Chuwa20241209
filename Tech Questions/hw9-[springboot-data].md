@@ -1,63 +1,110 @@
-1. create a file to list all of the annotaitons you learned and known, and explain the usage and how do you
-   understand it. you need to update it when you learn a new annotation. Please organize those annotations
-   well, like annotations used by entity, annotations used by controller. 
-File name: annotations.md
-    you'd better also list a code example under the annotations.  
+1-3. In code
 
+4.  What is JPA? and what is Hibernate?
 
-2. how the below annotaitons specify the table in database?
-    
-    >   @Column(columnDefinition = "varchar(255) default 'John Snow'")
-         private String name;
-    >     @Column(name="STUDENT_NAME", length=50, nullable=false, unique=false)
-         private String studentName;
-   
-      `Map name field in the entity class to a column in the db table. The column has a maximum length of 255 characters with a default value of 'John snow'. `  
-      `Map studentName field in the class to a column named "STUDENT_NAME" in the db table. The column has a max len of 50 characters, not null, duplicates acceptable.`
-  
+    > JPA is a Spring data interface for the application to interact with SQL database, mapping java objects to tables in the database. Hibernate is an implementation of the interface. It provides additional features, such as caching and custom query support.
 
-3. default column names of the table in database for @Column ?
-   >   @Column
-         private String firstName;
-         @Column
-         private String operatingSystem;
+5.  What is Hiraki? what is the benefits of connection pool?
 
-   `Default column name is inferred based on the field of class names. "firstName" and "operatingSystem" in this case.`  
+    > It's a jdbc connection pool that reduces the overhead of creating and closing of database connections. Improve performance by reusing connections(borrow and return a connection from the pool). Manage connection limits efficiently to prevent resource exhaustion.
+    > Common Default Values:
+    > PostgreSQL: Typically 100 connections.  
+    > MySQL: Usually around 151 connections (but this can vary based on the specific MySQL version and configuration).  
+    > SQL Server: The default depends on the edition and hardware but can be quite high (e.g., thousands).
 
+6.  What is the @OneToMany, @ManyToOne, @ManyToMany ? write some examples.
+    relationship between two entities.
+    @OneToMany, manager to employees
+    @ManyToOne, employees to manager
+    @ManyToMany, students and courses, authors and books, employee and projects
 
-4. What are the layers in springboot application? what is the role of each layer?
+7.  What is the cascade = CascadeType.ALL, orphanRemoval = true ? and what are the other CascadeType
+    and their features? In which situation we choose which one?
 
-   `Presentation layer - entry point for the application to the user, take user requests and send responses back.
-    Service layer - handle the business logic, transactions and concerns like caching and validation.
-    Data layer - use Spring Data JPA to interact with database to provide CRUD operations.`  
+    > CascadeType.ALL means all operations(persist, merge, remove, refresh, detach) applied to the parent is cascaded to child entities. Use this if you want full control over child through the parent.
+    > OrphanRemoval means removing child entities if they are removed from the parent's collection. Use this when the child entity should not exist independently.
+    > persist: save child entity when saving the parent.
+    > remove: delete child when deleting the parent.
+    > detach: detach child when the parent is detached.
+    > merge: update child when updating the parent.
+    > refresh: reload child when the parent is refreshed.
 
-  
-5. Describe the flow in all of the layers if an API is called by Postman.  
+8.  What is the fetch = FetchType.LAZY, fetch = FetchType.EAGER ? what is the difference? In which
+    situation you choose which one?
 
-   `Use "get" request as an example. User makes a GET request to an url. Spring boot application receives the request and routes to the corresponding controller method. The
-controller passes the data to the service layer for processing and respondes with the result. The service layer do some checks and then call the data layer to fetch data. The data layer uses Spring data JPA to do queries in the database.`  
+    > Lazy - data is loaded when accessed. Default for collections.
+    > eager - data is loaded when the parent is fetched. Default for single relationshp.(@OneToOne, @ManyToOne)
 
-6.  What is the application.properties? do you know application.yml?  
+9.  What is the rule of JPA naming convention? Shall we implement the method by ourselves? Could you list.
+    some examples?
 
-    `Both are used to add settings such as database setting, server ports, security settings for the application. application.properties uses key=value syntax. Yaml is a format allowing nested structures and easier to represent complex configurations.` 
-  
+    > CamelCase for field names while underscore for column names. yes. findByPostId()
 
-7. What’s the naming differences between GraphQL vs. REST ? Why is the differences ?  
-`Rest: resource oriented. HTTP methods + different endpoint. e.g. GET api/v1/users'. GraphQL: query oriented. Naming reflects actions, including queries, mutations. A single endpoint /graphql for all operations.`
-  `The diff lies in different naming design: rest apis are based on predefined resources and http methods while graphql focuses on queries and mutations. `  
-  
+10. Try to use JPA advanced methods in your class project. In the repository layer, you need to use the naming
+    convention to use the method provided by JPA.
+    '''
+    @Repository
+    public interface CommentRepository extends JpaRepository<Comment, Long> {
+    List<Post> findByPostId(Long postId);
+    }
 
-8. Provide 2 real-world examples of N+1 problem in REST that can be solved by GraphQL.  
-`Fetch users and all their orders. Fetch companies and all their open positions. Fetch books and all their authors.`
+        public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
-  
-9. Finish all the following API
-   REST
-   GET/PUT/DELETE post (with exception cases)
-   POST/GET/PUT/DELETE comment (you need to design the table and its relation with Post)
-   POST/GET/PUT/DELETE author (you need to design the table and its relation with Post)
-   GraphQL
-   Query postByID, getAllPost
-   Mutation createPost, updatePost
-10. Create a Project, name it with mongo-blog, write a POST API for mongo-blog, change database to
-    MongoDB;
+        @Query("SELECT c FROM Customer c WHERE c.name LIKE %:name%")
+        List<Customer> findCustomersByNameLike(@Param("name") String name);
+
+        @Query("SELECT COUNT(c) FROM Customer c")
+        long countAllCustomers();
+
+        @Query("SELECT c.name FROM Customer c WHERE c.id = :id")
+        String findCustomerNameById(@Param("id") Long id);
+
+    }
+    '''
+
+11. (Optional) Check out a new branch(https://github.com/TAIsRich/springboot-redbook/tree/hw02_01_jdbcT
+    emplate) from branch 02_post_RUD, replace the dao layer using JdbcTemplate.
+12. type the code, you need to checkout new branch from branch 02_post_RUD, name the new branch with h
+    ttps://github.com/TAIsRich/springboot-redbook/tree/hw05_01_slides_JPQL.
+13. What is JPQL?
+    > JPQL (Java Persistence Query Language) is a SQL-like language used in JPA to interact with databases.
+14. What is @NamedQuery and @NamedQueries?
+
+    > Used to define static queries at the entity level.
+
+15. What is @Query? In which Interface we write the sql or JPQL?
+
+    > @Query is an annotation used in repository interfaces to write custom queries. You can write either JPQL queries (which operate on entities) or native SQL queries (which operate directly on database tables).
+
+16. What is HQL and Criteria Queries?
+
+    > HQL (Hibernate Query Language) is an object-oriented query language for Hibernate.
+    > Programmatic API: Criteria Queries provide a programmatic way to build queries using Java objects and methods. They are type-safe and don't involve writing strings of HQL or SQL.
+    > ???
+
+17. What is EnityManager?
+
+    > The EntityManager in JPA is the primary interface through which an application interacts with the Persistence Context, which is responsible for managing the lifecycle of entity objects and their persistence in the database. The EntityManager provides a set of APIs for performing CRUD (Create, Read, Update, Delete) operations on the database using the entity objects.
+
+18. What is SessionFactory and Session?
+
+    > A session is an object that maintains the connection between Java object application and database. Session also has methods for storing, retrieving, modifying or deleting data from database using methods like persist(), load(), get(), update(), delete(), etc. Additionally, It has factory methods to return Query, Criteria, and Transaction objects.
+    > SessionFactory provides an instance of Session. It is a factory class that gives the Session objects based on the configuration parameters in order to establish the connection to the database.
+    > As a good practice, the application generally has a single instance of SessionFactory. The internal state of a SessionFactory which includes metadata about ORM is immutable, i.e once the instance is created, it cannot be changed.This also provides the facility to get information like statistics and metadata related to a class, query executions, etc. It also holds second-level cache data if enabled. This cache is maintained at the SessionFactory level and shared among all sessions in Hibernate.
+
+19. What is Transaction? how to manage your transaction?
+
+    > A transaction is a sequence of database operations that must be executed as a unit.
+
+20. What is hibernate Caching? Explain Hibernate caching mechanism in detail.
+21. What is the difference between first-level cache and second-level cache?
+22. How do you understand @Transactional? (https://github.com/TAIsRich/tutorial-transaction)
+
+Hibernate core interfaces are:
+
+Configuration
+SessionFactory
+Session: First Level Cache is local to the Session object and cannot be shared between multiple sessions.
+Criteria
+Query
+Transaction
