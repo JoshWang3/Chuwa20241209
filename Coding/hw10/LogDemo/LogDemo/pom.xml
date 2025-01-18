@@ -29,6 +29,10 @@
 	<properties>
 		<java.version>17</java.version>
 	</properties>
+
+	<!-- Change packaging to WAR -->
+	<packaging>war</packaging>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
