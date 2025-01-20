@@ -6,7 +6,7 @@
 target/
 */target/
 *.war
-application.properties
+*.application.properties
 
 # CMake
 cmake-build-*/
