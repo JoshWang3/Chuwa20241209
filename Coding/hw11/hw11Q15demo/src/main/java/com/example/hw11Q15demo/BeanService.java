@@ -4,3 +4,4 @@ public class BeanService {
     public String getMessage() {
         return "This is a service registered with @Bean";
     }
+}
