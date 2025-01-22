@@ -231,3 +231,39 @@ Example:
 @Autowired
 private PostService postService;
 ```
+
+## Annotations for Bean Management or Lifecycle
+### 1. @Component
+Usage: Marks a class as a Spring-managed bean.
+
+### 2. @Bean
+Usage: Declares a bean in a Spring @Configuration class.
+
+### 3. @Scope
+Usage: Defines the scope of a bean (e.g., singleton, prototype
+
+### 4. @Primary
+Usage: Specifies the default bean to inject when multiple beans of the same type exist.
+
+### 5. @Lazy
+Usage: It is specifically used to control lazy initialization of beans. Works with both singleton and prototype scoped beans.
+
+
+## Annotations for Configuration Annotations
+### 1. @ComponentScan
+Usage: Scans for Spring-managed components and registers them in the application context.
+
+## Annotations for Persistence Layer Annotations
+### 1. @Repository
+Usage: Marks a class as a DAO, enabling database-related operations and exception translation.
+
+
+## Annotations forDependency Injection Annotations
+### 1. @Qualifier
+Usage: Resolves ambiguity when multiple beans of the same type exist.
+
+### 2. @Resource
+Usage: Injects beans by name (and optionally by type).
+
+### 3. @Inject
+Usage: General-purpose Java EE/CDI injection annotation, similar to @Autowired
