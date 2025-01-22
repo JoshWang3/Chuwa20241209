@@ -30,3 +30,7 @@
 
 @Autowired: used to auto wire bean on the setter method
 
+@Component: marks the class as a Spring component
+
+@SpringbootApplication: used to bootstrap and configure the Spring application
+
