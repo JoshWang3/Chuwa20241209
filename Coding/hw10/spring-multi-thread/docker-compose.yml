@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  app:
+    image: spring-multi-thread-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: spring-multi-thread-app
+    ports:
+      - "8888:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/redbook?allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+    depends_on:
+      - db
+    restart: on-failure
+    networks:
+      - app-network
+
+  db:
+    image: mysql/mysql-server:8.0.23
+    container_name: mysqltest
+    environment:
+      MYSQL_DATABASE: redbook
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - app-network
+    ports:
+      - "3306:3306"
+
+networks:
+  app-network:
+
+volumes:
+  db-data:
