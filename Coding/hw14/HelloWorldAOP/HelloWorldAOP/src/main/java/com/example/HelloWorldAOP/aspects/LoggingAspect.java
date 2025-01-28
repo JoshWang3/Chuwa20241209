@@ -45,16 +45,38 @@ public class LoggingAspect {
         String className = joinPoint.getTarget().getClass().getSimpleName();
         logger.info("--------------------------------------------");
         logger.info("Entering external method: {}.{}", className, methodName);
+
+        try {
+            HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+            logger.info("REST API Request - Method: {}, URL: {}", request.getMethod(), request.getRequestURL());
+        } catch (IllegalStateException e) {
+            logger.info("No active web request context");
+        }
+
         long startTime = System.currentTimeMillis();
-
         Object result = joinPoint.proceed();
-
         long endTime = System.currentTimeMillis();
+
         logger.info("Exiting external method: {}.{}. Execution time: {} ms", className, methodName, (endTime - startTime));
 
         return result;
     }
 
+    @Around("@within(org.springframework.web.bind.annotation.RestController)")
+    public Object logRestApi(ProceedingJoinPoint joinPoint) throws Throwable {
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+
+        logger.info("REST API Request - Method: {}, URL: {}", request.getMethod(), request.getRequestURL());
+
+        long startTime = System.currentTimeMillis();
+        Object result = joinPoint.proceed();
+        long endTime = System.currentTimeMillis();
+
+        logger.info("REST API Response - Duration: {} ms", (endTime - startTime));
+        logger.info("Response: {}", result);
+
+        return result;
+    }
 
 /*
     @Pointcut("@within(LogExecution) || @annotation(LogExecution)")
