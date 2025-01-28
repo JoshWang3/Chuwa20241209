@@ -45,13 +45,14 @@ public class LoggingAspect {
         String className = joinPoint.getTarget().getClass().getSimpleName();
         logger.info("--------------------------------------------");
         logger.info("Entering external method: {}.{}", className, methodName);
-
+/*
         try {
             HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
             logger.info("REST API Request - Method: {}, URL: {}", request.getMethod(), request.getRequestURL());
         } catch (IllegalStateException e) {
             logger.info("No active web request context");
         }
+*/
 
         long startTime = System.currentTimeMillis();
         Object result = joinPoint.proceed();
