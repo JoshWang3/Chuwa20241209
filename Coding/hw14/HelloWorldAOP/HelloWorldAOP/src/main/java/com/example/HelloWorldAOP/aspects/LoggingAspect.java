@@ -1,5 +1,7 @@
 package com.example.HelloWorldAOP.aspects;
 
+import com.example.HelloWorldAOP.aspects.LogExecution;
+
 import jakarta.servlet.http.HttpServletRequest;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -24,7 +26,6 @@ public class LoggingAspect {
     public void logAfter(JoinPoint joinPoint) {
         logger.info("After executing: {}", joinPoint.getSignature().toShortString());
     }
-
     @AfterReturning(pointcut = "@within(LogExecution) || @annotation(LogExecution) || execution(* com.example.HelloWorldAOP.controller.*.*(..))", returning = "result")
     public void logAfterReturning(JoinPoint joinPoint, Object result) {
         try {
@@ -34,10 +35,41 @@ public class LoggingAspect {
         }
     }
 
+
     @AfterThrowing(pointcut = "@within(LogExecution) || @annotation(LogExecution) || execution(* com.example.HelloWorldAOP.controller.*.*(..))", throwing = "exception")
     public void logAfterThrowing(JoinPoint joinPoint, Throwable exception) {
         logger.error("Exception in {}: {}", joinPoint.getSignature().toShortString(), exception.getMessage());
     }
+/*
+    @Around("execution(* com.external..*.*(..)) || @within(org.springframework.web.bind.annotation.RestController)")
+    public Object logMethod(ProceedingJoinPoint joinPoint) throws Throwable {
+        String methodName = joinPoint.getSignature().getName();
+        String className = joinPoint.getTarget().getClass().getSimpleName();
+        logger.info("--------------------------------------------");
+        logger.info("Entering method: {}.{}", className, methodName);
+
+        try {
+            HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+            logger.info("REST API Request - Method: {}, URL: {}", request.getMethod(), request.getRequestURL());
+        } catch (IllegalStateException e) {
+            logger.info("No active web request context");
+        }
+
+        long startTime = System.currentTimeMillis();
+        Object result = joinPoint.proceed();
+        long endTime = System.currentTimeMillis();
+
+        logger.info("Exiting method: {}.{}. Execution time: {} ms", className, methodName, (endTime - startTime));
+
+        if (result != null) {
+            logger.info("Response: {}", result);
+        }
+
+        return result;
+    }(
+
+ */
+
 
     @Around("execution(* com.external..*.*(..))") // directly bind with AOP
     public Object logExternalMethodExecution(ProceedingJoinPoint joinPoint) throws Throwable {
@@ -78,6 +110,7 @@ public class LoggingAspect {
 
         return result;
     }
+
 
 /*
     @Pointcut("@within(LogExecution) || @annotation(LogExecution)")
