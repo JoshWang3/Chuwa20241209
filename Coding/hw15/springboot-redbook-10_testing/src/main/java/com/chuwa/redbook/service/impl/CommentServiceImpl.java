@@ -179,8 +179,9 @@ public class CommentServiceImpl implements CommentService {
 
     // Added: Static utility method to map a Comment entity to a CommentDto
     public static CommentDto commentServiceMapperUtil(Comment comment) {
-        if (comment == null) {  // <== Changed to handle null input
-            return null;  // <== Added null check
+        // Added null check
+        if (comment == null) {
+            return null;
         }
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(comment, CommentDto.class);
