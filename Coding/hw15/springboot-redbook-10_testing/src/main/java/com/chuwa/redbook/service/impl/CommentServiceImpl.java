@@ -32,8 +32,8 @@ public class CommentServiceImpl implements CommentService {
     /**
      * use this modelMapper to replace the mapToDto, mapToEntity methods.
      */
-    @Autowired
-    private ModelMapper modelMapper;
+    // @Autowired
+    // private ModelMapper modelMapper;
 
     @Override
     public CommentDto createComment(long postId, CommentDto commentDto) {
@@ -42,7 +42,9 @@ public class CommentServiceImpl implements CommentService {
             throw new IllegalArgumentException("CommentDto cannot be null");
         }
 
-        Comment comment = modelMapper.map(commentDto, Comment.class);
+        // Comment comment = modelMapper.map(commentDto, Comment.class);
+        // Changed: Replaced modelMapper.map() with commentServiceMapperUtil()
+        Comment comment = commentServiceMapperUtil(commentDto, Comment.class);
 
         // Changed: Validate postId before retrieving the post
         if (postId <= 0) {
@@ -64,7 +66,9 @@ public class CommentServiceImpl implements CommentService {
         // comment entity to DB
         Comment savedComment = commentRepository.save(comment);
 
-        return modelMapper.map(savedComment, CommentDto.class);
+        // return modelMapper.map(savedComment, CommentDto.class);
+        // Changed: Replaced modelMapper.map() with commentServiceMapperUtil()
+        return commentServiceMapperUtil(savedComment);
     }
 
     @Override
@@ -83,7 +87,11 @@ public class CommentServiceImpl implements CommentService {
         }
 
         // convert list of comment entities to list of comment dto's
-        return comments.stream().map(comment -> modelMapper.map(comment, CommentDto.class)).collect(Collectors.toList());
+        // return comments.stream().map(comment -> modelMapper.map(comment, CommentDto.class)).collect(Collectors.toList());
+        // Changed: Replaced modelMapper.map() with commentServiceMapperUtil()
+        return comments.stream()
+                .map(CommentServiceImpl::commentServiceMapperUtil)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -106,13 +114,15 @@ public class CommentServiceImpl implements CommentService {
             throw new BlogAPIException(HttpStatus.BAD_REQUEST, "Comment does not belong to post");
         }
 
-        return modelMapper.map(comment, CommentDto.class);
+        // return modelMapper.map(comment, CommentDto.class);
+        // Changed: Replaced modelMapper.map() with commentServiceMapperUtil()
+        return commentServiceMapperUtil(comment);
     }
 
     @Override
     public CommentDto updateComment(Long postId, Long commentId, CommentDto commentDtoRequest) {
         // Changed: Validate postId, commentId, and commentDtoRequest
-        if (postId <= 0 || commentId <= 0) {
+        if (postId <= 0 || commentId <= 0 || commentDtoRequest == null) {
             throw new IllegalArgumentException("Post ID and Comment ID must be greater than 0");
         }
 
@@ -140,7 +150,9 @@ public class CommentServiceImpl implements CommentService {
 
         Comment updatedComment = commentRepository.save(comment);
 
-        return modelMapper.map(updatedComment, CommentDto.class);
+        // return modelMapper.map(updatedComment, CommentDto.class);
+        // Changed: Replaced modelMapper.map() with commentServiceMapperUtil()
+        return commentServiceMapperUtil(updatedComment);
     }
 
     @Override
@@ -165,8 +177,18 @@ public class CommentServiceImpl implements CommentService {
         commentRepository.delete(comment);
     }
 
+    // Added: Static utility method to map a Comment entity to a CommentDto
     public static CommentDto commentServiceMapperUtil(Comment comment) {
+        if (comment == null) {  // <== Changed to handle null input
+            return null;  // <== Added null check
+        }
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(comment, CommentDto.class);
+    }
+
+    // Added: Static utility method to map a DTO to an entity
+    public static <T, U> U commentServiceMapperUtil(T source, Class<U> targetClass) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(source, targetClass);
     }
 }
