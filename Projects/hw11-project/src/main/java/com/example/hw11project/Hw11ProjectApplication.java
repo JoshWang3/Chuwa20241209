@@ -1,10 +1,13 @@
 package com.example.hw11project;
 
 import com.example.hw11project.client.*;
+import com.example.hw11project.service.injectionDemo.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.List;
 
 @SpringBootApplication
 public class Hw11ProjectApplication implements CommandLineRunner {
@@ -63,9 +66,6 @@ public class Hw11ProjectApplication implements CommandLineRunner {
 
 		System.out.println("\nSending SMS Notification:");
 		notificationClient.sendSMSNotification("Hello via SMS Service!");
-
-		System.out.println("\nListing All Available Services:");
-		notificationClient.printAllNotifications(null);
 
 		/**
 		 * Dependency Injection Demo:
