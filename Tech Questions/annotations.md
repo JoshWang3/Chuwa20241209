@@ -30,3 +30,6 @@ Allow client to call services dynamically using names instead of IPs.
 Enable Eureka Server in Spring Boot in the main class.
 @EnableDiscoveryClient / @EnableEurekaServer
 Enable discovery.Pick the implementation on the path.(Eureka,consul,zookeeper)
+
+ @PreAuthorize, @PostAuthorize
+ method-level security 
