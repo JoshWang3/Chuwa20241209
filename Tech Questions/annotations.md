@@ -54,3 +54,9 @@ Advice
 @Before and @After are used for simple pre- and post-processing.
 
 @AfterReturning and @AfterThrowing are used for handling successful and exceptional outcomes, respectively.
+
+**<p style="text-align:center;">test</p>**
+@Test
+@Mock @InjectMocks
+@BeforeEach
+@Spy
