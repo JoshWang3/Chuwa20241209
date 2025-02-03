@@ -60,3 +60,52 @@ Advice
 @Mock @InjectMocks
 @BeforeEach
 @Spy
+**<p style="text-align:center;">microservice</p>**
+
+```java
+// use hystrix,🔥 Issue: Hystrix is deprecated and no longer actively maintained.
+
+@HystrixCommand(fallbackMethod = "fallbackResponse")
+public String getUserData() {
+    return restTemplate.getForObject("http://user-service/api/users", String.class);
+}
+
+public String fallbackResponse() {
+    return "User service is currently unavailable. Please try again later.";
+}
+// use resilience4J
+@CircuitBreaker(name = "userService", fallbackMethod = "fallbackResponse")
+public String getUserData() {
+ return restTemplate.getForObject("http://user-service/api/users", String.class);
+}
+
+public String fallbackResponse(Exception e) {
+ return "User service is currently unavailable. Please try again later.";
+}
+
+```
+>@EnableEurekaServer
+@SpringBootApplication
+public class EurekaServerApplication {
+  public static void main(String[] args) {
+     SpringApplication.run(EurekaServerApplication.class, args);
+  }
+}
+
+>@SpringBootApplication
+@EnableEurekaClient
+public class MyServiceApplication {
+public static void main(String[] args) {
+SpringApplication.run(MyServiceApplication.class, args);
+}
+}
+
+>@SpringBootApplication
+@EnableGateway
+public class ApiGatewayApplication {
+public static void main(String[] args) {
+SpringApplication.run(ApiGatewayApplication.class, args);
+}
+}
+
+>@EnableOAuth2Sso
