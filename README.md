@@ -66,3 +66,8 @@ Open github, **Compare and Pull** or **New pull request**
 - from `firstName_lastName/hw1`
 
 *You should always raise your PRs to your own firstName_lastName/main branch, **Please don't raise your PR to main branch***
+
+
+[[Docker Hub: sifanw98/redbook]](https://hub.docker.com/layers/sifanw98/redbook/)
+
+docker run -p 8080:8080 sifanw98/redbook:latest
