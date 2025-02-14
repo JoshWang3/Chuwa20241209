@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: security-https-demo
+server:
+  port: 8443
+  ssl:
+    enabled: true
+    key-store: classpath:myapp.jks
+    key-store-password: security
+    key-alias: myapp
+    key-store-type: JKS
