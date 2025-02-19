@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucky Number Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<h1>Lucky Number Generator</h1>
+<p>Enter your name or any keyword to generate a lucky number:</p>
+<label for="userInput"></label><input type="text" id="userInput" placeholder="Type something...">
+<button onclick="generateLuckyNumber()">Get Lucky Number</button>
+<div id="result"></div>
+
+<script>
+    function generateLuckyNumber() {
+        const input = document.getElementById('userInput').value;
+        if (!input.trim()) {
+            alert('Please enter some input!');
+            return;
+        }
+        const now = new Date().getTime();
+        let hash = 0;
+        for (let i = 0; i < input.length; i++) {
+            hash = (hash << 5) - hash + input.charCodeAt(i);
+            hash |= 0;
+        }
+        const luckyNumber = Math.abs((hash + now) % 100) + 1;
+        document.getElementById('result').innerText = `Your Lucky Number: ${luckyNumber}`;
+    }
+
+    document.getElementById('userInput').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            generateLuckyNumber();
+        }
+    });
+</script>
+</body>
+</html>
