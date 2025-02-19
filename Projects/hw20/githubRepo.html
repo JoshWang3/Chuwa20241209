@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Repos Fetcher</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        input,
+        button {
+            font-size: 18px;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        #result {
+            margin-top: 20px;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>GitHub Repositories Fetcher</h2>
+    <p>Enter a GitHub username to fetch their repositories:</p>
+    <input type="text" id="username" placeholder="Enter GitHub username">
+    <button onclick="fetchReposAsyncAwait()">Fetch Repos</button>
+    <div id="result"></div>
+
+    <script>
+        async function fetchReposAsyncAwait() {
+            const username = document.getElementById("username").value.trim();
+            const resultDiv = document.getElementById("result");
+            if (!username) {
+                resultDiv.innerHTML = "<p>Please enter a GitHub username.</p>";
+                return;
+            }
+            try {
+                const response = await fetch(`https://api.github.com/users/${username}/repos`);
+                if (!response.ok) throw new Error("User not found or API error");
+                const repos = await response.json();
+                displayRepos(repos);
+            } catch (error) {
+                resultDiv.innerHTML = `<p style='color: red;'>Error: ${error.message}</p>`;
+            }
+        }
+
+        function displayRepos(repos) {
+            const resultDiv = document.getElementById("result");
+            if (repos.length === 0) {
+                resultDiv.innerHTML = "<p>No repositories found.</p>";
+                return;
+            }
+            resultDiv.innerHTML = "<h3>Repositories:</h3><ul>" +
+                repos.map(repo => `<li><a href='${repo.html_url}' target='_blank'>${repo.name}</a></li>`).join('') +
+                "</ul>";
+        }
+    </script>
+</body>
+
+</html>
