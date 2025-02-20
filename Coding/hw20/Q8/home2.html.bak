@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Repos Fetcher</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 200px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>GitHub Repositories Fetcher</h1>
+        <input type="text" id="githubUserId" placeholder="Enter GitHub User ID" />
+        <button onclick="fetchReposUsingAsyncAwait()">Fetch Repos</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        // Function to fetch GitHub repos using async/await
+        async function fetchReposUsingAsyncAwait() {
+            const userId = document.getElementById("githubUserId").value.trim();
+            const resultDiv = document.getElementById("result");
+
+            if (!userId) {
+                resultDiv.innerHTML = `<p class="error">Please enter a GitHub User ID!</p>`;
+                return;
+            }
+
+            resultDiv.innerHTML = `<p>Loading...</p>`;
+
+            try {
+                const response = await fetch(`https://api.github.com/users/${userId}/repos`);
+                if (!response.ok) {
+                    throw new Error(`User not found or API error (Status: ${response.status})`);
+                }
+                const repos = await response.json();
+                if (repos.length === 0) {
+                    resultDiv.innerHTML = `<p>No repositories found for this user.</p>`;
+                } else {
+                    resultDiv.innerHTML = `<pre>${JSON.stringify(repos, null, 2)}</pre>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<p class="error">Error: ${error.message}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>
