@@ -4,7 +4,7 @@
 ```
 Done.
 ```
-###2,Install Cassandra DB  on your computer,
+### 2,Install Cassandra DB  on your computer,
 ```
 Used docker image.
 ```
@@ -74,11 +74,50 @@ Query the Table:
 #### (7),Explain why Cassandra has a "Query-first design" with CQL query examples
 ```
 The schema is optimized for specific queries.
+The key reasons of it are performance, limited query flexibility, and scalability.
+
+It forces us to think about the application's query patterns before designing the data model. 
+It is essential for achieving the high performance and scalability that Cassandra is known for. 
+It trades some query flexibility for speed and scalability by carefully structuring the data around the queries.
 
 Example:
 	SELECT * FROM trainee_information
 	WHERE trainee_id = <trainee_id> AND department_id = <department_id>
 	ORDER BY join_date DESC;
+	
+	-- Get the latest orders for a specific user
+	CREATE TABLE orders_by_user (
+		user_id UUID,
+		order_id TIMEUUID,
+		product_id UUID,
+		order_date TIMESTAMP,
+		total_amount DECIMAL,
+		shipping_address TEXT,
+		PRIMARY KEY (user_id, order_id)
+	) WITH CLUSTERING ORDER BY (order_id DESC);
+
+	-- Get all orders for a specific product
+	CREATE TABLE orders_by_product (
+		product_id UUID,
+		order_date TIMESTAMP,
+		order_id UUID,
+		user_id UUID,
+		total_amount DECIMAL,
+		shipping_address TEXT,
+		PRIMARY KEY (product_id, order_date, order_id)
+	) WITH CLUSTERING ORDER BY (order_date DESC);
+
+	-- Get the details of a specific order
+	CREATE TABLE orders (
+		order_id UUID,
+		user_id UUID,
+		product_id UUID,
+		order_date TIMESTAMP,
+		total_amount DECIMAL,
+		shipping_address TEXT,
+		PRIMARY KEY (order_id)
+	);
+
 ```
 #### (8),Explain Cassandra consistency levels.
 
