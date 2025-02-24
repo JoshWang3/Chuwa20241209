@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GitHub Repos Fetcher</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+      }
+      input,
+      button {
+        padding: 10px;
+        font-size: 16px;
+      }
+      #repos {
+        margin: 20px auto;
+        width: 60%;
+        text-align: left;
+        display: flex;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>GitHub Repos Fetcher</h2>
+    <p>Enter a GitHub user ID to fetch their repositories</p>
+    <input type="text" id="github-user" placeholder="Enter GitHub user ID" />
+    <button onclick="fetchGitHubRepos()">Fetch Repos</button>
+    <div id="repos"></div>
+
+    <script>
+      async function fetchGitHubRepos() {
+        let userId = document.getElementById("github-user").value.trim();
+        let reposDiv = document.getElementById("repos");
+        reposDiv.innerHTML = "";
+
+        if (!userId) {
+          alert("Please enter a GitHub user ID.");
+          return;
+        }
+
+        try {
+          let response = await fetch(
+            `https://api.github.com/users/${userId}/repos`
+          );
+          if (!response.ok) {
+            throw new Error(`Error: ${response.status} ${response.statusText}`);
+          }
+          let data = await response.json();
+          if (data.length === 0) {
+            reposDiv.innerHTML = "No repositories found for this user.";
+            return;
+          }
+
+          let list = `<h3>Repositories of ${userId}:</h3><ul>`;
+          data.forEach((repo) => {
+            list += `<li><a href="${repo.html_url}" target="_blank">${repo.name}</a></li>`;
+          });
+          list += "</ul>";
+          reposDiv.innerHTML = list;
+        } catch (error) {
+          reposDiv.innerHTML = `<p style="color: red;">Failed to fetch repos: ${error.message}</p>`;
+        }
+      }
+    </script>
+  </body>
+</html>
