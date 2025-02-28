@@ -1,0 +1,16 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: analysis-service
+  kafka:
+    bootstrap-servers: localhost:9091, localhost:9092, localhost:9093
+    consumer:
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    listener:
+      ack-mode: manual  # manual commit offset (used by At Least Once & Exactly Once)
+kafka:
+  topic:
+    name: order-events
