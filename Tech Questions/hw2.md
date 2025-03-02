@@ -47,7 +47,7 @@ public class Main {
 ```
 An object representation of primitive data types.
 Why? 
-1. when object is required to interact with Java libraries or frameworks like Collections cannot store primitive types directly; 
+1. when object is required to interact with Java libraries or frameworks like CollectionsTest cannot store primitive types directly; 
 2. when we need utility methods for parsing, conversion, and handling primitives like Integer.parseInt(String s)
 3. when we want to allow null values like Integer x = null
 ```
