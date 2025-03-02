@@ -1,5 +1,18 @@
 # Chuwa20241209
 
+#### HW18
+
+```
+docker pull eshendocker/eshenredbook:latest
+
+docker run -e SPRING_DATASOURCE_URL=jdbc:mysql://mysql-db:3306/mydb \
+           -e SPRING_DATASOURCE_USERNAME=user \
+           -e SPRING_DATASOURCE_PASSWORD=password \
+           -p 8080:8080 \
+           eshendocker/eshenredbook:latest
+
+```
+
 
 
 ## First time configure
