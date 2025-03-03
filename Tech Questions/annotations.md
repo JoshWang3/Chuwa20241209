@@ -258,7 +258,7 @@ Usage: Scans for Spring-managed components and registers them in the application
 Usage: Marks a class as a DAO, enabling database-related operations and exception translation.
 
 
-## Annotations forDependency Injection Annotations
+## Annotations for Dependency Injection Annotations
 ### 1. @Qualifier
 Usage: Resolves ambiguity when multiple beans of the same type exist.
 
@@ -267,3 +267,112 @@ Usage: Injects beans by name (and optionally by type).
 
 ### 3. @Inject
 Usage: General-purpose Java EE/CDI injection annotation, similar to @Autowired
+
+
+## Annotations for Aspect Management
+### 1. @Aspect
+Used to define a class as an aspect where cross-cutting concerns are handled.
+```
+@Aspect
+@Component
+public class LoggingAspect {}
+```
+
+
+### 2. @Pointcut
+Defines specific locations (methods, classes) where advice applies.
+```
+@Pointcut("execution(* com.example.service.*.*(..))")
+public void serviceMethods() {}
+```
+
+## Annotations for Advice Annotations
+
+### 1. @Before
+Runs advice before the matched method is executed.
+```
+@Before("serviceMethods()")
+public void logBefore() {
+    System.out.println("Method execution started.");
+}
+
+```
+
+### 2. @After
+Runs advice after the method (regardless of success or failure).
+```
+@After("serviceMethods()")
+public void logAfter() {
+    System.out.println("Method execution completed.");
+}
+```
+
+### 3. @AfterReturning
+Runs advice after a method returns successfully.
+```
+@AfterReturning("serviceMethods()")
+public void logAfterSuccess() {
+    System.out.println("Method executed successfully.");
+}
+
+```
+
+### 4. @AfterThrowing
+Runs advice after a method throws an exception.
+```
+@AfterThrowing("serviceMethods()")
+public void logError() {
+    System.out.println("An error occurred during method execution.");
+}
+```
+### 5. @Around
+Runs advice both before and after method execution.
+```
+@Around("serviceMethods()")
+public Object logAround(ProceedingJoinPoint joinPoint) throws Throwable {
+    System.out.println("Before method execution.");
+    Object result = joinPoint.proceed();
+    System.out.println("After method execution.");
+    return result;
+}
+```
+
+## Annotations for Scheduling
+
+### 1. @EnableScheduling
+Activates Spring’s scheduling mechanism.
+```
+@Configuration
+@EnableScheduling
+public class SchedulerConfig {}
+
+```
+
+### 2. @Scheduled
+Defines a task that runs on a schedule.
+```
+@Scheduled(cron = "0 0 9 * * ?")
+    public void executeTaskDailyAt9AM() {
+        System.out.println("Task executed at 9:00 AM: " + System.currentTimeMillis());
+    }
+```
+
+
+
+## Annotations for Eureka
+
+### 1. @EnableEurekaClient
+Registers a microservice with Eureka for dynamic service discovery.
+
+### 2. @EnableEurekaServer
+Starts a Eureka server, which acts as a service registry for microservices.
+
+
+
+
+## Annotations for Resilience & Fault Tolerance
+### 1. @HystrixCommand
+Implements a circuit breaker pattern to handle failures gracefully.
+
+### 2. @EnableCircuitBreaker
+Enables circuit breaker functionality in a Spring Boot application.
