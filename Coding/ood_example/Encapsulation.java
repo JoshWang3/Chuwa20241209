@@ -1,4 +1,4 @@
-public class EncapsulationExample {
+public class Encapsulation {
     public static void main(String[] args) {
         Person person = new Person("Sherry");
         person.setAge(20);
