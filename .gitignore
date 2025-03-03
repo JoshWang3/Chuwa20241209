@@ -1,5 +1,9 @@
 .DS_Store
 .idea/
+.classpath
+.project
+.settings/
+target/
 
 # CMake
 cmake-build-*/
