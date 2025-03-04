@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9b6f1cb8-e446-4df3-ab63-ea73dcbb1ce8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Coding/Multithreading/Homework1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Coding/Multithreading/Homework2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Coding/Multithreading/Homework3.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tech Questions/hw5_multithreading.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tech Questions/hw6.md" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +46,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "zhongqing__zeng/hw6__30",
+    "git-widget-placeholder": "zhongqing__zeng/hw7",
     "last_opened_file_path": "/Users/naserienzeng/chuwa/Chuwa20241209",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -128,7 +126,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1734329382769</updated>
-      <workItem from="1734329383929" duration="20776000" />
+      <workItem from="1734329383929" duration="22181000" />
     </task>
     <servers />
   </component>
