@@ -1,4 +1,4 @@
-# Homework 1
+# Homework 2
 ## 1. Write up Example code to demonstrate the three foundmental concepts of OOP. (reference Code Demo repo as example)
 - ### **Encapsulation：**
 ```
