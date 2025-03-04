@@ -80,3 +80,35 @@ public class UserService {
     private UserRepository userRepository;
 }
 ```
+
+# Annotations Used for Spring IOC (Inversion of Control) 
+
+## @Component
+- Marks a class as a Spring-managed component.
+
+## @Service
+- Marks a class as a service component in the application.
+
+## @Controller
+- Indicates a class is a Spring MVC controller.
+
+## @RestController
+- Combines @Controller and @ResponseBody for REST APIs.
+
+## @Scope
+- Defines the scope of a Spring bean (e.g., singleton, prototype).
+
+## @Value
+- Injects values from properties files or environment variables.
+
+## @Configuration
+- Indicates a class has Spring bean definitions.
+
+## @Bean
+- Declares a method as a Spring bean definition.
+
+## @Primary
+- Indicates a bean should be preferred when multiple candidates are present.
+
+## @Profile
+- Activates beans only for specified profiles.
