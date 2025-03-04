@@ -112,3 +112,8 @@ public class UserService {
 
 ## @Profile
 - Activates beans only for specified profiles.
+
+# Annotations Used for Spring DI (Dependency Injection) 
+
+## @Lazy
+- Marks a bean to be lazily initialized. The bean is only created when it is first accessed, not during application startup.
