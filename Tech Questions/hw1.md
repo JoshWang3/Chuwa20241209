@@ -19,7 +19,7 @@ The basic steps to initialize a git repo in our local machine are as follows.
 - initialize git with `git init`
 
 ### 4. How to clone a repo from Github ?
-For cloning a repo from Github, we can use "git clone <repo-name.git>" command.
+For cloning a repo from Github, we can use the command
 ```
 git clone https://github.com/JoshWang3/Chuwa20241209.git
 ```
@@ -28,8 +28,8 @@ git clone https://github.com/JoshWang3/Chuwa20241209.git
 We can use `git branch` and `git checkout` to create a new branch and checkout to that branch.
 1. `git branch <branch_name>`
 2. `git checkout <branch_name>`
-or
-We can use one-line `git checkout -b <branch_name>`
+
+- (or) We can use one-line `git checkout -b <branch_name>`
 
 ### 6. How to merge the branch_test to master branch in command? show me the commands
 To merge the branch_test to master branch safely, 
