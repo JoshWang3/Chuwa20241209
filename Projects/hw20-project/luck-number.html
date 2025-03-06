@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <h2>Lucky Number Generator 🎲</h2>
+    <p>Enter your name and get your lucky number!</p>
+    <input type="text" id="name-input" placeholder="Enter your name" autofocus>
+    <button onclick="generateLuckyNumber()">Get Lucky Number</button>
+    <p id="lucky-number"></p>
+</div>
+<script>
+    function generateLuckyNumber() {
+        let name = document.getElementById('name-input').value.trim();
+        if (name === "") {
+            alert("Please enter your name.");
+            return;
+        }
+        let currentDate = new Date();
+        let seed = name.length + currentDate.getFullYear() + currentDate.getMonth() + currentDate.getDate() + currentDate.getHours() + currentDate.getMinutes();
+        let luckyNumber = (seed % 100) + 1; // 1 to 100
+        document.getElementById('lucky-number').innerText = `Hello ${name}, your lucky number is ${luckyNumber}.`;
+    }
+
+    // Enable "Enter" key to trigger the button click
+    document.getElementById("name-input").addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            generateLuckyNumber();
+        }
+    });
+</script>
+</body>
+</html>
