@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <div class="container">
+    <h2>GitHub Repo Fetcher 🔍</h2>
+    <p>Enter a GitHub username:</p>
+    <input type="text" id="github-username" placeholder="e.g. octocat">
+    <button onclick="fetchReposAsync()">Fetch Repos (Async/Await)</button>
+    <button onclick="fetchReposPromise()">Fetch Repos (Promise)</button>
+    <p id="error"></p>
+    <pre id="repo-output">JSON output will appear here...</pre>
+  </div>
+
+  <script>
+    const outputElement = document.getElementById('repo-output');
+    const errorElement = document.getElementById('error');
+
+    function showError(message) {
+      errorElement.innerText = message;
+      outputElement.innerText = "JSON output will appear here...";
+    }
+
+    // Use Async/Await
+    async function fetchReposAsync() {
+      let username = document.getElementById("github-username").value.trim();
+      if (!username) {
+        showError("Please enter a valid github username.");
+        return;
+      }
+      try {
+        errorElement.innerText = ""; // Clear previous errors
+        outputElement.innerText = "Fetching data...";
+        let response = await fetch(`https://api.github.com/users/${username}/repos`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        let repos = await response.json();
+        outputElement.innerText = JSON.stringify(repos, null, 2);
+      } catch (error) {
+        showError(error.message);
+      }
+    }
+
+    // Use Promises
+    function fetchReposPromise() {
+      let username = document.getElementById("github-username").value.trim();
+      if (!username) {
+        showError("Please enter a valid github username.");
+        return;
+      }
+      errorElement.innerText = ""; // Clear previous errors
+      outputElement.innerText = "Fetching data...";
+
+      fetch(`https://api.github.com/users/${username}/repos`)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then(repos => {
+          outputElement.innerText = JSON.stringify(repos, null, 2);
+        })
+        .catch(error => {
+          showError(error.message);
+        });
+    }
+  </script>
+</body>
+</html>
