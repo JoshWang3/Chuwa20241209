@@ -71,3 +71,9 @@ Open github, **Compare and Pull** or **New pull request**
 [[Docker Hub: sifanw98/redbook]](https://hub.docker.com/layers/sifanw98/redbook/)
 
 docker run -p 8080:8080 sifanw98/redbook:latest
+
+
+
+**API Base URL:** [http://redbook-env.e-jfdwajxz2e.us-east-1.elasticbeanstalk.com
+](http://redbook-env.e-jfdwajxz2e.us-east-1.elasticbeanstalk.com
+)
