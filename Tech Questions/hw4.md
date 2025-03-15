@@ -150,7 +150,7 @@ https://github.com/CTYue/chuwa-eij-tutorial/blob/main/02-java-core/src/main/java
 	
 ##### 7. What are the advantages of the Optional class?
 
-	1, Avoid NullPointerException\
+	1, Avoid NullPointerException
 	Provides Defaults: Easily provides fallback values with orElse().
 	
 	```
@@ -308,7 +308,7 @@ https://github.com/CTYue/chuwa-eij-tutorial/blob/main/02-java-core/src/main/java
 	```
 
 ##### 12. What are Intermediate and Terminal operations?
-	
+```
 	(1),Intermediate Operations:\
     Lazy Evaluation: Intermediate operations are not executed immediately when invoked. \
 	They are only executed when a terminal operation is called.\
@@ -336,7 +336,7 @@ https://github.com/CTYue/chuwa-eij-tutorial/blob/main/02-java-core/src/main/java
 	findFirst(): Returns the first element of the stream.\
 	anyMatch(): Checks if any element in the stream matches a predicate.\
 	allMatch(): Checks if all elements in the stream match a predicate.
-	
+```
 
 ##### 13. Demontrate the most commonly used Intermediate operations in Stream API, with code snippet.
 
