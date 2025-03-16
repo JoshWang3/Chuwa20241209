@@ -1,8 +1,8 @@
-## HW5: HW_MultiThreading
+### HW5: HW_MultiThreading
 
-### 1. Read: https://www.interviewbit.com/multithreading-interview-questions/#class-level-lock-vs-object-level-lock
+#### 1. Read: https://www.interviewbit.com/multithreading-interview-questions/#class-level-lock-vs-object-level-lock
 
-### 2. Write a thread-safe singleton class
+#### 2. Write a thread-safe singleton class
 
 ```
 	Thread-Safe Singleton (Lazy Initialization with Double-Checked Locking)
@@ -25,7 +25,7 @@
 	}
 ```
 
-### 3. How to create a new thread(Please also consider Thread Pool approach)?
+#### 3. How to create a new thread(Please also consider Thread Pool approach)?
 
 ```
 	(1)  Extending the Thread Class
@@ -91,7 +91,7 @@
 	}
 ```
 
-### 4. Difference between Runnable and Callable?
+#### 4. Difference between Runnable and Callable?
 
 ```
 Runnable: 
@@ -120,7 +120,7 @@ Example:
 	};
 ```
 
-### 5. What is the difference between t.start() and t.run()?
+#### 5. What is the difference between t.start() and t.run()?
 
 ```
 t.start(): 
@@ -130,7 +130,7 @@ t.run():
 	Execute the codes within run() on current thread, it won't create a thread
 ```
 
-### 6. Which way of creating threads is better: Thread class or Runnable interface?
+#### 6. Which way of creating threads is better: Thread class or Runnable interface?
 
 ```
  Runnable is better.
@@ -142,7 +142,7 @@ t.run():
  Use Thread when it doesn't need to inherit other classes.
 ```
 
-### 7. What are the thread statuses?
+#### 7. What are the thread statuses?
 
 ```
 	1,New: A thread is created but has not started yet. It exists only in memory.
@@ -153,7 +153,7 @@ t.run():
 	6,Terminated: A thread in this state has completed its execution or has been stopped
 ```
 
-### 8. Demonstrate deadlock and how to resolve it in Java code.
+#### 8. Demonstrate deadlock and how to resolve it in Java code.
 
 ```
 	public class DeadlockExample {
@@ -229,23 +229,27 @@ t.run():
 	}
 ```
 
-### 9. How do threads communicate each other?
+#### 9. How do threads communicate each other?
 
 ```	
-	1, Shared Variables: Threads can share data by accessing common variables1. However, this requires proper synchronization to avoid race conditions.
+	1, Shared Variables: Threads can share data by accessing common variables1. 
+	However, this requires proper synchronization to avoid race conditions.
+
 	2, Thread Control Methods, such as wait(), notify(), and notifyAll()
 		wait(): Causes the current thread to wait until another thread invokes notify() or notifyAll()
 		notify(): Wakes up a single waiting thread
 		notifyAll(): Wakes up all waiting threads
+
 	3, Concurrency Utilities:		
 		Semaphores: Control access to a shared resource by multiple threads
 		CountDownLatch:
 		Mutexes: Ensure mutual exclusion, allowing only one thread to access a shared resource at a time
 		Condition Variables: Allow threads to wait for specific conditions to be met
+
 	4, Locks: Provide a way for threads to acquire exclusive access to shared resources
 ```
 
-### 10. What’s the difference between class lock and object lock?
+#### 10. What’s the difference between class lock and object lock?
 
 ```	
 	Object locks provide instance-level synchronization, while class locks offer class-wide synchronization.
@@ -268,7 +272,7 @@ t.run():
 		(3)Concurrency: Multiple threads can execute synchronized methods on different object instances simultaneously, but only one thread can execute a static synchronized method across all instances.
 ```
 
-### 11. What is join() method?
+#### 11. What is join() method?
 
 ```
 	The join() method  allows one thread to wait for the completion of another thread.
@@ -300,7 +304,7 @@ t.run():
 	It can also be used for data dependency, When the current thread relies on the results or side effects of another thread, the join() method ensures that the necessary data is available before proceeding.
 ```	
 
-### 12. what is yield() method
+#### 12. what is yield() method
 
 ```	
 	The yield() method of is a hint to the operating system's thread scheduler that the current thread is willing to give up its current use of the processor.
@@ -308,7 +312,7 @@ t.run():
 	It is often used when a thread doesn't have critical work to do for the moment but wants to be cooperative and allow other threads to execute, especially when threads have the same priority.
 ```	
 
-### 13. What is ThreadPool? How many types of ThreadPool? What is the TaskQueue in ThreadPool?
+#### 13. What is ThreadPool? How many types of ThreadPool? What is the TaskQueue in ThreadPool?
 ``` 
 	 Instead of creating new threads for every task (which can be resource-intensive), a thread pool reuses existing threads, improving performance and resource management. 
 	 When a task is submitted, the thread pool assigns it to an available worker thread, and once the task is completed, the worker thread is returned to the pool to be reused for other tasks.
@@ -370,7 +374,7 @@ Different types of thread pools are suited for different workloads.
 The choice of task queue (bounded, unbounded, or priority) affects the behavior of the thread pool.	
 ```
 
-### 14. Which Library is used to create ThreadPool? Which Interface provide main functions of thread-pool?
+#### 14. Which Library is used to create ThreadPool? Which Interface provide main functions of thread-pool?
 
 ```
 The library used to create a ThreadPool is the java.util.concurrent package.
@@ -423,7 +427,7 @@ class Task implements Runnable {
 
 
 ```
-### 15. How to submit a task to ThreadPool?
+#### 15. How to submit a task to ThreadPool?
 ```
 The ExecutorService interface provides methods to submit tasks for execution. 
 1, Use the Executors utility class to create a thread pool.
@@ -518,7 +522,7 @@ class CallableTask implements Callable<Integer> {
 }
 ```
 
-### 16. What is the advantage of ThreadPool?
+#### 16. What is the advantage of ThreadPool?
 ```
 	Advantage						Description
 Improved Performance			Reduces overhead of thread creation and destruction.
@@ -533,7 +537,7 @@ Improved Responsiveness			Keeps the main thread responsive by offloading tasks.
 Avoids Thread Explosion			Prevents unlimited thread creation.
 ```
 
-### 17. Difference between shutdown() and shutdownNow() methods of executor
+#### 17. Difference between shutdown() and shutdownNow() methods of executor
 
 ```
 The shutdown() and shutdownNow() methods in the ExecutorService interface are used to shut down a thread pool, 
@@ -564,7 +568,7 @@ Combining shutdown() and awaitTermination() to shut down gracefully within a spe
 	}
 ```
 
-### 18. What is Atomic classes? How many types of Atomic classes? Give me some code example of Atomic classes and its main methods. when to use it?
+#### 18. What is Atomic classes? How many types of Atomic classes? Give me some code example of Atomic classes and its main methods. when to use it?
 
 ```
 Atomic classes in Java are part of the java.util.concurrent.atomic package.
@@ -636,7 +640,7 @@ Example 3: AtomicIntegerArray
 
 ```
 
-### 19. What is the concurrent collections? Can you list some concurrent data structure (Thread-safe)
+#### 19. What is the concurrent collections? Can you list some concurrent data structure (Thread-safe)
 
 ```
 Concurrent collections in Java are part of the java.util.concurrent package. 
@@ -656,15 +660,12 @@ Use CopyOnWriteArrayList or CopyOnWriteArraySet for scenarios where reads are fr
 Use blocking queues, such as ArrayBlockingQueue, LinkedBlockingQueue, for real-time processing.
 Use ConcurrentHashMap for scalable, thread-safe maps.
 
-
-
-
 ```
 
-### 20. What kind of locks do you know? What is the advantage of each lock?
+#### 20. What kind of locks do you know? What is the advantage of each lock?
 
 ```
-1. synchronized Keyword
+1. synchronized Keyword (Intrinsic Locks)
 Its advantages are: Simple to implement and use, Automatic Lock Management by the JVM, and is Reentrant.
 A thread can re-acquire the same lock multiple times.
 Its disvantages are: 
@@ -682,6 +683,7 @@ It can have performance overhead in high concurrency scenarios.
 It is in java.util.concurrent.locks package.
 It is flexible.
 It can be configured to follow first come, first serve order.
+Can be configured to be fair, meaning that the lock will be granted to the longest-waiting thread.
 A thread can re-acquire the same lock multiple times.
 
 Its Disadvantages are that it requires explicit lock management, and might lead to deadlock.
@@ -704,18 +706,30 @@ Its Disadvantages are that it requires explicit lock management, and might lead 
 	}
 
 3, ReadWriteLock
+ReadWriteLock is an interface that provides a pair of locks: one for read operations and one for write operations.
+The most common implementation is ReentrantReadWriteLock.
 
+Allows multiple threads to read a resource simultaneously, but only one thread to write at a time.
+This can significantly improve performance in scenarios where reads are more frequent than writes.
+Similar to ReentrantLock, it can be configured to be fair.
 
-4, StampedLock
+4, Condition
+Condition is an interface that provides a way for threads to wait for certain conditions to be met before proceeding. 
+It is typically used in conjunction with ReentrantLock.
 
+5. Semaphore
+A Semaphore is a synchronization primitive that controls access to a shared resource through a set of permits.
+It is useful for controlling access to a pool of resources, such as database connections.
+It can be used to implement various synchronization patterns, such as limiting the number of concurrent threads accessing a resource.
 
-
-5, Condition
-
-
+6. CountDownLatch
+CountDownLatch is a synchronization aid that allows one or more threads to wait until a set of operations being performed in other threads completes.
+It is useful for one-time synchronization points, such as starting a group of threads at the same time.
+It is easy to use for coordinating the start or completion of tasks.
 
 ```
-### 21. What is future and completableFuture? List some main methods of ComplertableFuture.
+
+#### 21. What is future and completableFuture? List some main methods of ComplertableFuture.
 
 ```
 A Future represents the result of an asynchronous computation.
@@ -769,17 +783,17 @@ Its advantages are:
 	}
 
 ```
-### 22. Type the code by your self and try to understand it. (package com.chuwa.tutorial.t08_multithreading)
+#### 22. Type the code by your self and try to understand it. (package com.chuwa.tutorial.t08_multithreading)
 
 ```
 https://github.com/CTYue/chuwa-eij-tutorial/tree/main/02-java-core/src/main/java/com/chuwa/tutorial/t08_multithreading
 
 
 ```
-### 23. Write a code to create 2 threads, one thread print 1,3,5,7,9, another thread print 2,4,6,8,10. 
-### (solution is in com.chuwa.tutorial.t08_multithreading.c05_waitNotify.OddEventPrinter)
+#### 23. Write a code to create 2 threads, one thread print 1,3,5,7,9, another thread print 2,4,6,8,10. 
+#### (solution is in com.chuwa.tutorial.t08_multithreading.c05_waitNotify.OddEventPrinter)
 
-###	1. One solution use synchronized and wait notify
+####	1. One solution use synchronized and wait notify
 
 ```
 synchronized, wait(), and notify():
