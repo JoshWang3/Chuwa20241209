@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucky Number Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .container {
+            display: inline-block;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            width: 200px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Lucky Number Generator</h1>
+        <input type="text" id="userInput" placeholder="Enter your name" />
+        <button onclick="generateLuckyNumber()">Get Lucky Number</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        // Function to generate a lucky number
+        function generateLuckyNumber() {
+            // Get user input
+            const userInput = document.getElementById("userInput").value.trim();
+
+            // Get current date and time
+            const now = new Date();
+            const date = now.getDate();
+            const month = now.getMonth() + 1; // Months are 0-indexed
+            const year = now.getFullYear();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+
+            // Combine date, time, and user input to create a seed
+            const seed = `${date}${month}${year}${hours}${minutes}${seconds}${userInput}`;
+
+            // Generate a random number based on the seed
+            let hash = 0;
+            for (let i = 0; i < seed.length; i++) {
+                hash = (hash << 5) - hash + seed.charCodeAt(i);
+                hash |= 0; // Convert to 32-bit integer
+            }
+
+            // Ensure the number is positive and within a reasonable range (e.g., 1-100)
+            const luckyNumber = Math.abs(hash) % 100 + 1;
+
+            // Display the result
+            const resultElement = document.getElementById("result");
+            if (userInput === "") {
+                resultElement.textContent = "Please enter your name!";
+            } else {
+                resultElement.textContent = `Hello, ${userInput}! Your lucky number is: ${luckyNumber}`;
+            }
+        }
+
+        // Allow pressing Enter key to generate the lucky number
+        document.getElementById("userInput").addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                generateLuckyNumber();
+            }
+        });
+    </script>
+</body>
+</html>
