@@ -1,421 +1,441 @@
-# Homework 4
+### HW4: HW_Java8
 
-## 5. Discuss best practices on nullptr exception prevention, provide code snippet for each practice that you mentioned.
-- **Always Null Check:** First Ensure the object is not null before accessing its methods or properties.
-    ```
-    String str = null;
-    if (str != null) {
-        System.out.println(str.length());
+#### 1. Learn Java generics by reading and practicing following code:
+https://github.com/CTYue/chuwa-eij-tutorial/tree/main/02-java-core/src/main/java/com/chuwa/tutorial/t01_basic/generic
+
+
+#### 2. Read the follwoing code repo and type it one by one by yourself.
+https://github.com/CTYue/chuwa-eij-tutorial/tree/main/02-java-core/src/main/java/com/chuwa/tutorial/t06_java8/features
+
+
+#### 3. Practice following stream API exercises at least 3 times
+https://github.com/gavinklfong/stream-api-exercises/blob/main/src/test/java/space/gavinklfong/demo/streamapi/StreamApiTest.java
+
+
+#### 4. Practice Optional methods at least 2 times
+https://github.com/CTYue/chuwa-eij-tutorial/blob/main/02-java-core/src/main/java/com/chuwa/tutorial/t06_java8/exercise/ShoppingCartUtil.java
+
+
+#### 5. Discuss best practices on nullptr exception prevention, provide code snippet for each practice that you mentioned.
+
+	(1), Always check for null first
+
+	if (str != null) {
+        return String.valueOf(str.length());
     } else {
-        System.out.println("String is null.");
-    }
-    ```
-
-- **Null Check from Parent to Nested Objects:** For nested objects, validate each parent object before accessing child objects.
-    ```
-    class Address {
-        String city;
+        return "str is null";
     }
 
-    class Person {
-        Address address;
-    }
+	(2), null check from parent object to nested/inner object
 
-    Person person = new Person();
-    if (person != null && person.address != null && person.address.city != null) {
-        System.out.println(person.address.city);
-    } else {
-        System.out.println("One of the nested objects is null.");
-    }
-    ```
+	Example:
 
-- **Use Optional to Handle Potential Null Values**
-    ```
-    import java.util.Optional;
-
-    String str = null;
-    Optional<String> optionalStr = Optional.ofNullable(str);
-    System.out.println(optionalStr.orElse("Default Value"));
-    ```
-
-- **Use Objects.requireNonNull for Immediate Null Validation:** This utility ensures that critical objects are not null and throws an exception with a custom message if they are.
-    ```
-    import java.util.Objects;
-
-    public void process(String input) {
-        input = Objects.requireNonNull(input, "Input cannot be null");
-        System.out.println(input.toUpperCase());
-    }
-    ```
-
-- **Prefer Safe Methods for Comparisons:** Avoid calling methods on potential null values. Use safe alternatives like comparing with constants first.
-    ```
-    String str = null;
-    if ("Chuwa".equals(str)) {
-        System.out.println("Strings match!");
-    } else {
-        System.out.println("Strings do not match or string is null.");
-    }
-    ```
-
-` **Use Try-Catch for Unexpected Null Scenarios:** While not ideal, try-catch can handle unexpected null values when you cannot validate the input in advance.
-    ```
-    try {
-        String str = null;
-        System.out.println(str.length());
-    } catch (NullPointerException e) {
-        System.out.println("Caught NullPointerException: " + e.getMessage());
-    }
-    ```
-
-- **Initialize Variables Properly:** Ensure variables are initialized with default values to avoid null references.
-    ```
-    class User {
-        String name = "";
-    }
-
-    User user = new User();
-    System.out.println(user.name.length());
-    ```
-
-- **Use Annotations and Static Analysis Tools:** Leverage tools like @NonNull, @Nullable, or static analysis tools like SpotBugs or SonarQube to identify potential null risks.
-    ```
-    public void greet(@NonNull String name) {
-        System.out.println("Hello, " + name);
-    }
-    ```
-
-## 6. Discuss Java 8 new features with code snippet.
-- **ambda Expressions:** Enables functional programming by allowing concise expressions for single-method interfaces.
-    ```
-    import java.util.Arrays;
-    import java.util.List;
-
-    public class LambdaExample {
-        public static void main(String[] args) {
-            List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
-            names.forEach(name -> System.out.println(name));
-        }
-    }
-    ```
-
-- **Stream API:** Simplifies processing collections of data in a functional style.
-    ```
-    import java.util.Arrays;
-    import java.util.List;
-
-    public class StreamExample {
-        public static void main(String[] args) {
-            List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-            numbers.stream()
-                .filter(n -> n % 2 == 0)
-                .map(n -> n * n)
-                .forEach(System.out::println);
-        }
-    }
-    ```
-
-- **Optional:** Provides a container to handle null values safely and avoid NullPointerException.
-    ```
-    import java.util.Optional;
-
-    public class OptionalExample {
-        public static void main(String[] args) {
-            Optional<String> optional = Optional.ofNullable(null);
-            System.out.println(optional.orElse("Default Value"));
-        }
-    }
-    ```
-
-- **Default Methods in Interfaces:** Allows methods with default implementations in interfaces.
-    ```
-    interface Vehicle {
-        default void start() {
-            System.out.println("Vehicle is starting");
-        }
-    }
-
-    class Car implements Vehicle {}
-
-    public class DefaultMethodExample {
-        public static void main(String[] args) {
-            Car car = new Car();
-            car.start();
-        }
-    }
-    ```
-
-- **Method References:** Provides a shorthand for lambda expressions when referring to existing methods.
-    ```
-    import java.util.Arrays;
-    import java.util.List;
-
-    public class MethodReferenceExample {
-        public static void main(String[] args) {
-            List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
-            names.forEach(System.out::println);
-        }
-    }
-    ```
-
-- **Date and Time API:** Introduced a new API for handling date and time.
-    ```
-    import java.time.LocalDate;
-    import java.time.LocalTime;
-    import java.time.LocalDateTime;
-
-    public class DateTimeExample {
-        public static void main(String[] args) {
-            LocalDate date = LocalDate.now();
-            LocalTime time = LocalTime.now();
-            LocalDateTime dateTime = LocalDateTime.now();
-
-            System.out.println("Date: " + date);
-            System.out.println("Time: " + time);
-            System.out.println("DateTime: " + dateTime);
-        }
-    }
-    ```
-
-- **Functional Interfaces:** Interfaces with a single abstract method, such as Runnable, Callable, or Comparator, are treated as functional interfaces.
-    ```
-    import java.util.function.Predicate;
-
-    public class FunctionalInterfaceExample {
-        public static void main(String[] args) {
-            Predicate<String> isLongerThan5 = str -> str.length() > 5;
-            System.out.println(isLongerThan5.test("Hello"));
-            System.out.println(isLongerThan5.test("Hello, World!"));
-        }
-    }
-    ```
-
-- **Streams Parallel Processing:** Processes data streams in parallel for improved performance.
-    ```
-    import java.util.Arrays;
-    import java.util.List;
-
-    public class ParallelStreamExample {
-        public static void main(String[] args) {
-            List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-            numbers.parallelStream()
-                .filter(n -> n % 2 == 0)
-                .forEach(System.out::println);
-        }
-    }
-    ```
-
-## 7. What are the advantages of the Optional class?
-- **Avoids NPE:** The Optional class explicitly forces you to handle the possibility of null, reducing the risk of unintentional NPEs.
-    ```
-    Optional<String> optional = Optional.ofNullable(null);
-    optional.ifPresent(System.out::println); // Does nothing if null, avoiding NPE
-    ```
-- **Improves Code Readability:** By explicitly showing that a value may be absent, it makes code more understandable and self-documenting.
-- **Simplifies Null Checking:** It provides convenient methods like isPresent() ,orElse(), orElseGet() and orElseThrow() to handle nulls concisely.
-    ```
-    String result = Optional.ofNullable(null).orElse("Default Value");
-    System.out.println(result); // Output: Default Value
-    ```
-- **Encourages Functional Programming:** Optional works seamlessly with Java's functional programming features, such as lambda expressions and the Stream API.
-    ```
-    Optional<String> name = Optional.ofNullable("Alice");
-    System.out.println(Optional.ofNullable("Alice").map(String::toUpperCase).orElse("DEFAULT"));
-    ```
-
-## 8. Explain Functional Interface and Lambda with code samples.
-- **Functional Interface:** A functional interface is an interface that contains exactly one abstract method. ```(parameters) -> {body}```
-- **Examples:** Runnable, Callable, Comparator, and the interfaces in java.util.function package (like Predicate, Function, etc.).
-- **Lambda Expression:** A lambda expression is a concise way to represent an implementation of a functional interface.
-    ```
-    @FunctionalInterface
-    interface Greeting {
-        void sayHello(String name); // Single abstract method
-    }
-
-    public class FunctionalInterfaceExample {
-        public static void main(String[] args) {
-            Greeting greeting = name -> System.out.println("Hello, " + name);
-            greeting.sayHello("Alice"); // Output: Hello, Alice
-        }
-    }
-    ```
-
-## 9. Explain Method Reference with code samples?
-A method reference is a shorthand notation for invoking a method through a lambda expression. 
-**The essence of method references is to bind a method, which matches the abstract method signature of a functional interface, to an instance of that interface.**
-    ```
-    public class StaticMethodReference {
-        public static void print(String s) {
-            System.out.println(s);
+	public static String getCityName(Person person) {
+        // Check for null at each level (Person -> Address -> City)
+        if (person != null && person.getAddress() != null && person.getAddress().getCity() != null) {
+            return person.getAddress().getCity().getName();
+        } else if (person != null && person.getAddress() == null) {
+            return "Address is null";
+        } else if (person != null && person.getAddress() != null && person.getAddress().getCity() == null) {
+            return "City is null";
         }
 
-        public static void main(String[] args) {
-            List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
-            names.forEach(StaticMethodReference::print); // Method reference
-        }
-    }
-    ```
-
-## 10. Explain "Lambda can use unchanged variable outside of lambda", with code snippet.
-- Lambda expressions in Java can capture variables from their enclosing scope, but only under certain rules. Specifically, the variable used in the lambda expression must be effectively final. This means the variable’s value cannot be modified after it has been initialized.
-- **Why this Restriction:** This ensures thread safety and avoids ambiguity in concurrent execution. Lambdas may execute asynchronously, so allowing variable modifications could lead to inconsistent results.
-- **Workaround for Mutable Variables:** If you need to modify variables within a lambda, use a mutable wrapper like an array or a collection:
-    ```
-    import java.util.concurrent.atomic.AtomicInteger;
-
-    public class MutableVariableExample {
-        public static void main(String[] args) {
-            AtomicInteger number = new AtomicInteger(10); // Mutable wrapper
-
-            Runnable lambda = () -> {
-                number.set(20); // Modifying the value
-                System.out.println("Number: " + number.get());
-            };
-
-            lambda.run(); // Output: Number: 20
-        }
-    }
-    ```
-
-## 11. Can a functional interface extend/inherit another interface?
-Yes, a functional interface can extend another interface as long as it adheres to the functional interface rule: it must have exactly one abstract method.
-
-
-## 12. What are Intermediate and Terminal operations?
-- **Intermediate Operations** are used to process data and return a new stream. They are lazy, meaning they are not executed immediately but only when a terminal operation is invoked.
-    ```
-    filter(Predicate)
-    map(Function)
-    flatMap(Function)
-    sorted(Comparator)
-    distinct()
-    limit(long)
-    skip(long)
-    ```
-- **Terminal Operations** trigger the processing of the stream pipeline. They produce a result (either a value or a side effect) and terminate the stream pipeline.
-    ```
-    forEach(Consumer)
-    collect(Collector)
-    reduce(BinaryOperator)
-    count()
-    anyMatch(Predicate)
-    allMatch(Predicate)
-    noneMatch(Predicate)
-    findFirst()
-    findAny()
-    ```
-
-## 13. Demontrate the most commonly used Intermediate operations in Stream API, with code snippet.
-```
-public class StreamIntermediateOperations {
-    public static void main(String[] args) {
-        // Sample data
-        List<List<String>> nestedList = Arrays.asList(
-                Arrays.asList("Alice", "Bob", "Charlie"),
-                Arrays.asList("David", "Alice", "Eve"),
-                Arrays.asList("Frank", "George", "Alice")
-        );
-
-        // Stream pipeline demonstrating all intermediate operations
-        List<String> result = nestedList.stream()
-                .flatMap(List::stream)           // Flatten nested lists
-                .filter(name -> name.startsWith("A")) // Filter names starting with "A"
-                .map(String::toUpperCase)        // Convert names to uppercase
-                .distinct()                      // Remove duplicates
-                .sorted()                        // Sort alphabetically
-                .skip(1)                         // Skip the first element
-                .limit(2)                        // Limit to 2 elements
-                .collect(Collectors.toList());   // Collect into a List
-
-        // Print the result
-        System.out.println(result);
-    }
-}
-```
-
-## 14. How are Collections different from Stream?
-| Feature        | Collections                          | Streams                                          |
-|----------------|--------------------------------------|--------------------------------------------------|
-| **Storage**    | Stores elements in memory            | No storage; processes elements on-the-fly        |
-| **Nature**     | Eager                                | Lazy                                             |
-| **Mutability** | Mutable                              | Immutable                                        |
-| **Reusability**| Can be reused                        | Cannot be reused after terminal operation        |
-| **Parallelism**| Requires manual setup                | Built-in with `parallelStream()`                 |
-| **Operations** | Imperative (e.g., loops)             | Declarative (e.g., lambdas)                      |
-
-## 15. Implement Stream API's filter and map methods by your self.
-```
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Function;
-import java.util.function.Predicate;
-
-public class CustomStream<T> {
-    private List<T> data;
-
-    // Constructor
-    public CustomStream(List<T> data) {
-        this.data = data;
+        return "Person is null";
     }
 
-    // Filter method
-    public CustomStream<T> filter(Predicate<? super T> predicate) {
-        List<T> filteredData = new ArrayList<>();
-        for (T element : data) {
-            if (predicate.test(element)) {
-                filteredData.add(element);
-            }
-        }
-        return new CustomStream<>(filteredData);
-    }
 
-    // Map method
-    public <R> CustomStream<R> map(Function<? super T, ? extends R> mapper) {
-        List<R> mappedData = new ArrayList<>();
-        for (T element : data) {
-            mappedData.add(mapper.apply(element));
-        }
-        return new CustomStream<>(mappedData);
-    }
+	(3), Use try-catch for Defensive Exception Handling
 
-    // Terminal operation: collect into a List
-    public List<T> collect() {
-        return new ArrayList<>(data);
-    }
-
-    // Print method for demonstration
-    public void forEach() {
-        for (T element : data) {
-            System.out.println(element);
-        }
-    }
-
-    // Main method to test
-    public static void main(String[] args) {
-        // Example input list
-        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9);
-
-        // Custom Stream Usage
-        List<String> result = new CustomStream<>(numbers)
-            .filter(n -> n % 2 == 0)               // Keep only even numbers
-            .map(n -> "Number: " + n)             // Convert to String with a prefix
-            .collect();                           // Collect the result into a List
-
-        // Print the result
-        System.out.println(result);
-    }
-}
-```
+	try {
+		System.out.println(input.length());
+	} catch (NullPointerException e) {
+		System.out.println("Input is null!");
+	}
 
 
+	(4), It it better to use second way than the first way in below code:
+
+	String str1;
+	str1.equals("abc"); // First way: If str1 is null, calling str1.equals("abc") will throw a NullPointerException.
+	"abc".equals(str1); // Second way: better in terms of null safety.  If str1 is null, it just returns false without causing an exception.
 
 
+	(5),Use Optional (Java 8 and Later)
+
+	public String helper(Optional<String> input) {
+		return input.map(String::length).map(String::valueOf).orElse("Input is null");
+	}
+
+	(6), Use Ternary Operator for Conditional Null Checks
+
+	(person != null) ? person.getName() : "Unknown";
+
+	(7),  Use @NonNull and @Nullable Annotations
+	
+	import org.jetbrains.annotations.Nullable;
+	import org.jetbrains.annotations.NotNull;
+
+	public void processString(@NotNull String input) {
+		// input is guaranteed to be non-null
+		System.out.println(input.length());
+	}
+
+	public String getStringOrNull() {
+		return null;  // Explicitly marked nullable
+	}
+
+#### 6. Discuss Java 8 new features with code snippet.
+
+	(1), Lambda Expressions:
+	Lambda expressions allow for more concise representation of anonymous classes with a single method.\
+	Example:
+	List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+	numbers.forEach(n -> System.out.println(n));
+
+	(2),Functional Interfaces:
+	Functional interfaces are interfaces with a single abstract method, which can be implemented using lambda expressions.\
+	Example:
+	@FunctionalInterface
+	interface MyInterface {
+		double getPiValue();
+	}
+	MyInterface ref = () -> 3.1415;
+	System.out.println("Value of Pi = " + ref.getPiValue());
+
+	(3),Stream API:
+	The Stream API enables functional-style operations on streams of elements.
+
+	List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+	int sum = numbers.stream()
+					 .filter(n -> n % 2 == 0)
+					 .mapToInt(Integer::intValue)
+					 .sum();
+
+	(4),Method References
+	Method references provide a way to refer to methods without executing them.
+	Example:
+
+	List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
+	names.forEach(System.out::println);
+
+	(5),Default Methods:
+	Default methods allow the addition of new methods to interfaces without breaking existing implementations.
+	Example:
+
+	interface MyInterface {
+		default void newMethod() {
+			System.out.println("New method");
+		}
+	}
 
 
+	(6),Optional Class:	The Optional class helps in handling null values more effectively.
+	Example:
+	Optional<String> optional = Optional.of("hello");
+	optional.ifPresent(s -> System.out.println(s.length()));
+	
+#### 7. What are the advantages of the Optional class?
+
+	1, Avoid NullPointerException
+	Provides Defaults: Easily provides fallback values with orElse().
+
+	Optional<String> name = Optional.ofNullable(user.getName());
+	name.ifPresent(n -> System.out.println("Name: " + n));
+
+	2, Improve code readability:
+	   Optional makes it clear when a value might be absent, improving code clarity.
+
+	3, Functional programming support:
+	   It provides methods like map(), filter(), and flatMap() that align well with functional programming paradigms.
+	
+	4, Lazy evaluation:
+	   Methods like orElseGet() allow for lazy creation of default values, potentially improving performance.
+	
+	5, Explicit API design:
+	   Using Optional as a return type clearly communicates that a method may not always produce a value.
+	
+	6, Safer chaining:
+	   It allows for safer method chaining without the risk of NullPointerExceptions.
+	
+	7, Alternative actions:
+	   Optional provides methods like ifPresent() and ifPresentOrElse() to specify alternative actions when a value is present or absent.
+
+#### 8. Explain Functional Interface and Lambda with code samples.
+
+	A functional interface is an interface that contains exactly one abstract method. It can have multiple default or static methods, but only one abstract method. 
+	Functional interfaces are often used as the basis for lambda expressions.
+
+	@FunctionalInterface
+	interface MyFunctionalInterface {
+		void run();
+	}
+
+	Lambda Expressions
+	Lambda expressions provide a concise way to represent instances of single-method interfaces (functional interfaces). 
+	They allow you to treat functionality as a method argument, or code as data.
+	
+	Examples:
+	(parameters) -> expression
+	(parameters) -> { statements; }
+	
+	ArrayList<Integer> numbers = new ArrayList<>();
+	numbers.add(5);
+	numbers.add(9);
+	numbers.add(8);
+	numbers.add(1);
+
+	Consumer<Integer> method = (n) -> System.out.println(n);
+	numbers.forEach(method);		
+
+#### 9. Explain Method Reference with code samples?
+
+	Method references in Java 8 provide a concise way to refer to methods or constructors. 
+	They are essentially shorthand notations for lambda expressions that call a specific method.
+	
+	There are four types of method references:
+	
+	(1),Reference to a static method:
+	List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+	numbers.forEach(System.out::println);
+
+	(2),Reference to an instance method of a particular object:
+	String str = "Hello";
+	Predicate<String> startsWithH = str::startsWith;
+	boolean result = startsWithH.test("Hi"); // returns true
+
+	(3), Reference to an instance method of an arbitrary object of a particular type:
+	List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
+	names.sort(String::compareToIgnoreCase);
+
+	This is equivalent to:
+	names.sort((s1, s2) -> s1.compareToIgnoreCase(s2));
 
 
+	(4),Reference to a constructor:
+
+	Supplier<List<String>> listSupplier = ArrayList::new;
+	List<String> list = listSupplier.get(); // Creates a new ArrayList
 
 
+#### 10. Explain "Lambda can use unchanged variable outside of lambda", with code snippet.
+
+	Lambdas can access variables that are effectively final from the surrounding scope.
+	Variables outside the lambda expression are not modified within the lambda.
+	We can access and use variables from the surrounding scope in a lambda, but those variables must be "effectively final". 
+	
+	Effectively final means that the variable's value is not modified after initialization, even though it might not be explicitly declared as final.\
+	Lambda expressions can capture and use such variables from the enclosing scope.
+	
+	Example:
+
+	import java.util.Arrays;
+	import java.util.List;
+
+	public class LambdaExample {
+		public static void main(String[] args) {
+			int multiplier = 2;  // Unchanged variable outside the lambda
+			
+			List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+			
+			// Lambda expression accessing the multiplier variable
+			numbers.forEach(number -> {
+				int result = number * multiplier;
+				System.out.println(result);
+			});
+		}
+	}
+
+#### 11. Can a functional interface extend/inherit another interface?
+
+	Yes, a functional interface in Java can extend or inherit from another interface.\
+	But the resulting interface must still have exactly one abstract method. \
+	The core principle of a functional interface is that it can only have one abstract method. 
+	
+	Functional interfaces can also extend non-functional interfaces, \
+	but they must adhere to the rule of having only one abstract method in total after inheritance.
+	
+	Example:
+
+	// Parent interface with no abstract methods
+	interface MyInterface {
+		default void defaultMethod() {
+			System.out.println("Default method in MyInterface");
+		}
+
+		static void staticMethod() {
+			System.out.println("Static method in MyInterface");
+		}
+	}
+
+	// Functional interface extending MyInterface
+	@FunctionalInterface
+	interface MyFunctionalInterface extends MyInterface {
+		void abstractMethod(); 
+	}
+	
+	MyInterface has no abstract methods, only a default and a static method.	
+
+#### 12. What are Intermediate and Terminal operations?
+
+	(1),Intermediate Operations:
+    Lazy Evaluation: Intermediate operations are not executed immediately when invoked.
+	They are only executed when a terminal operation is called.
+    Return a New Stream: They return a new stream, which means that multiple intermediate operations can be chained together to build a pipeline of operations.
+    Stateful or Stateless: Some intermediate operations are stateless (e.g., map(), filter()) while others may require maintaining some state (e.g., distinct(), sorted()).
+	
+	Examples of Intermediate Operations:
+    filter(): Filters elements based on a condition.
+    map(): Transforms each element of the stream.
+    flatMap(): Flattens nested structures, returning a stream of elements.
+    distinct(): Removes duplicates.
+    sorted(): Sorts elements in the stream.
+    peek(): Allows you to perform a side-effect (like logging or debugging) without modifying the stream.
+	
+	(2),Terminal Operations:
+	They perform an action on the stream and produce a result 
+	They trigger the execution of all preceding intermediate operations.
+	Terminal operations mark the end of the stream pipeline, and the stream cannot be used further after a terminal operation is executed.
+
+	Examples:
+	forEach(): Performs an action on each element of the stream.
+	collect(): Collects the elements of the stream into a collection.
+	reduce(): Reduces the elements of the stream to a single value.
+	count(): Counts the number of elements in the stream.
+	findFirst(): Returns the first element of the stream.
+	anyMatch(): Checks if any element in the stream matches a predicate.
+	allMatch(): Checks if all elements in the stream match a predicate.
+
+#### 13. Demontrate the most commonly used Intermediate operations in Stream API, with code snippet.
+
+	(1),filter():	Filters elements of the stream based on a given predicate (a boolean-valued function).
+	List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+	List<Integer> evenNumbers = numbers.stream()
+			.filter(n -> n % 2 == 0)
+			.collect(Collectors.toList()); 
+
+	System.out.println("Even numbers: " + evenNumbers); // Output: Even numbers: [2, 4, 6, 8, 10]
+	
+	(2), map():	Transforms each element of the stream into another object.
+
+	List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
+	List<String> upperCaseNames = names.stream()
+			.map(String::toUpperCase)
+			.collect(Collectors.toList());
+
+	System.out.println("Uppercase names: " + upperCaseNames); // Output: Uppercase names: [ALICE, BOB, CHARLIE]
+	
+	(3), sorted(): Sorts the elements of the stream in natural order or according to a custom comparator.
+
+	List<Integer> numbers = Arrays.asList(5, 2, 8, 1, 9);
+	List<Integer> sortedNumbers = numbers.stream()
+			.sorted() // Sort in ascending order
+			.collect(Collectors.toList());
+
+	System.out.println("Sorted numbers: " + sortedNumbers);	// Output: Sorted numbers: [1, 2, 5, 8, 9]
 
 
+	(4), distinct():	Removes duplicate elements from the stream.
+
+	List<Integer> numbers = Arrays.asList(1, 2, 2, 3, 3, 3, 4, 5, 5);
+
+	List<Integer> distinctNumbers = numbers.stream()
+			.distinct() 
+			.collect(Collectors.toList());
+
+	System.out.println("Distinct numbers: " + distinctNumbers);		// Output: Distinct numbers: [1, 2, 3, 4, 5]
+
+	(5), limit():	Limits the number of elements in the stream to a specified count.
+
+	List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+	List<Integer> firstThreeNumbers = numbers.stream()
+			.limit(3) // Limit to the first three numbers
+			.collect(Collectors.toList());
+
+	System.out.println("First three numbers: " + firstThreeNumbers);		// Output: First three numbers: [1, 2, 3]
+
+	(6), skip(): Skips the first n elements of the stream.
+
+	List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+	List<Integer> numbersAfterTwo = numbers.stream()
+			.skip(2) // Skip the first two numbers
+			.collect(Collectors.toList());
+
+	System.out.println("Numbers after two: " + numbersAfterTwo);	// Output: Numbers after two: [3, 4, 5, 6, 7, 8, 9, 10]
+
+
+#### 14. How are Collections different from Stream?
+	
+	Collections are containers for storing data.
+	Streams are a way to process data from a source (often a collection) in a declarative and efficient manner.
+	
+	Collections:
+	Data Structures: Collections are data structures that hold a group of objects.
+	They store elements in memory.
+	It is mutable. We can add, remove, and modify elements within a collection.
+	Iteration: Collections can be iterated over using traditional loops (for, foreach).
+	Examples: List, Set, Map, Queue
+	
+	Streams:
+	Streams represent a sequence of elements from a source, often a collection.
+	Streams do not store elements.
+	It is immutable. Once a stream operation has been performed, the stream cannot be reused.
+	Intermediate operations (like filter, map) are not executed immediately. They are chained together and only executed when a terminal operation (like collect, forEach) is encountered.
+	Streams can be easily parallelized for performance gains, especially with large datasets.
+	
+
+#### 15. Implement Stream API's filter  and map  methods by your self
+
+	import java.util.ArrayList;
+	import java.util.Arrays;
+	import java.util.List;
+	import java.util.function.Function;
+	import java.util.function.Predicate;
+
+	class CustomStream<T> {
+		private List<T> list;
+
+		public CustomStream(List<T> list) {
+			this.list = list;
+		}
+
+		public CustomStream<T> filter(Predicate<T> predicate) {
+			List<T> result = new ArrayList<>();
+			for (T item : list) {
+				if (predicate.test(item)) {
+					result.add(item);
+				}
+			}
+			return new CustomStream<>(result);
+		}
+
+		public <R> CustomStream<R> map(Function<T, R> mapper) {
+			List<R> result = new ArrayList<>();
+			for (T item : list) {
+				result.add(mapper.apply(item));
+			}
+			return new CustomStream<>(result);
+		}
+
+		public List<T> collect() {
+			return new ArrayList<>(list);
+		}
+	}
+
+	public class Main {
+		public static void main(String[] args) {
+			List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+			CustomStream<Integer> stream = new CustomStream<>(numbers);
+
+			List<Integer> result = stream
+				.filter(n -> n % 2 == 0)
+				.map(n -> n * 2)
+				.collect();
+
+			System.out.println("Original numbers: " + numbers);
+			System.out.println("Filtered and mapped result: " + result);
+		}
+	}
+
+	Original numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+	Filtered and mapped result: [4, 8, 12, 16, 20]
