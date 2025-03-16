@@ -1,0 +1,21 @@
+1, Git
+2, Java Core
+3, Excpetion
+4, Java 8
+5, Muiltithreading
+6, DB
+7, REST API
+8, Spring Boot
+9, Spring Data
+10, Spring Logging
+11, IOC
+12, MVC
+13, Security
+14, AOP
+15, UT(Unit Testing)
+16, Microservices
+17, Kafka
+18, Docker
+19, AWS
+20, JS(Javascript)
+21, Cassandra
