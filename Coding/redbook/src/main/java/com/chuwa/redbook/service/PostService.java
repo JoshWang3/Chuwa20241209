@@ -1,4 +1,4 @@
-package com.chuwa.redbook.entity.service;
+package com.chuwa.redbook.service;
 
 import com.chuwa.redbook.payload.PostDTO;
 import com.chuwa.redbook.payload.PostDTO2nd;
@@ -10,7 +10,7 @@ public interface PostService {
 
     List<PostDTO> getPosts();
 
-    PostDTO getPostById(long postId);
+    PostDTO getPost(long postId);
 
     PostDTO2nd getPost2nd(long postId);
 

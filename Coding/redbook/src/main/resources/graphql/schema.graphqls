@@ -1,19 +1,19 @@
 # The Root Query for the application
-type Query {
+type Query{
     postById(id: ID): Post
-    post(id: ID): Post
+    post(id:ID): Post
 }
 
-type Post {
-    id: ID
+type Post{
+    id:ID
     title: String
     description: String
     content: String
     author: Author
 }
 
-type Author {
-    id: ID
+type Author{
+    id:ID
     firstName: String
     lastName: String
 }
@@ -21,5 +21,5 @@ type Author {
 type Mutation {
     createPost(title: String!, description: String!, content: String!) : Post!
     makePost(title: String!, description: String!, content: String!) : Post!
-    updatePost(id: ID, title: String!, description: String!, content: String!) : Post!
+    updatePost(id:ID, title: String!, description: String!, content: String!) : Post!
 }

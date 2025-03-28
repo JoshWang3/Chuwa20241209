@@ -2,6 +2,7 @@ package com.chuwa.redbook.entity;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -13,7 +14,6 @@ import java.time.LocalDateTime;
         }
 )
 public class Post {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,24 +27,20 @@ public class Post {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @Column(name = "user_id", nullable = false)
-    private Long userId;
-
     @CreationTimestamp
     private LocalDateTime createDateTime;
 
-    @CreationTimestamp
+    @UpdateTimestamp
     private LocalDateTime updateDateTime;
 
     public Post() {
     }
 
-    public Post(Long id, String title, String content, String description, Long userId, LocalDateTime createDateTime, LocalDateTime updateDateTime) {
+    public Post(Long id, String title, String content, String description, LocalDateTime createDateTime, LocalDateTime updateDateTime) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.description = description;
-        this.userId = userId;
         this.createDateTime = createDateTime;
         this.updateDateTime = updateDateTime;
     }
@@ -81,14 +77,6 @@ public class Post {
         this.description = description;
     }
 
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
     public LocalDateTime getCreateDateTime() {
         return createDateTime;
     }
@@ -104,5 +92,4 @@ public class Post {
     public void setUpdateDateTime(LocalDateTime updateDateTime) {
         this.updateDateTime = updateDateTime;
     }
-
 }
