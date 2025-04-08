@@ -2,355 +2,414 @@
 
 ## 1. Create a file to list all of the annotaitons you learned and known, and explain the usage and how do you understand it. you need to update it when you learn a new annotation. Please organize those annotations well, like annotations used by entity, annotations used by controller.
 
-- Entity-Related Annotations
+This document lists the annotations I have learned and organizes them based on their usage in different layers of a Spring Boot application. I will update this list as I learn more annotations.
 
-    - @Entity: Marks a class as a JPA Entity, which means objects of this class will be mapped to a database table.
-    ```
-    @Entity
-    public class User {
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
-        private String username;
-        // ...
-    }
-    ```
+---
 
-    - @Table: Used to specify the table name in the database if you don't want to use the default name (which is usually the class name).
-    ```
-    @Entity
-    @Table(name = "TBL_USER")
-    public class User {
-        // ...
-    }
-    ```
+## Entity Layer Annotations (JPA / Hibernate)
 
-    - @Column: Used to customize the mapping of a specific column. You can specify properties like name, length, nullable, unique, and columnDefinition.
-    ```
-    @Entity
-    public class Book {
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
+- `@Entity`
 
-        @Column(length = 100, nullable = false)
-        private String title;
-    }
-    ```
+  - Marks a class as a JPA entity that maps to a database table.
+  - Think of this as the class that holds database row data.
 
-    - @ManyToOne / @OneToMany / @OneToOne / @ManyToMany: Specify different kinds of relationships between entities (e.g., one-to-many, many-to-one, one-to-one, many-to-many).
-    ```
-    @Entity
-    public class Order {
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
+- `@Table(name = "table_name")`
 
-        @ManyToOne
-        private Customer customer;
+  - Specifies the database table name if different from the class name.
 
-        // ...
-    }
-    ```
+- `@Id`
 
-- Controller-Related Annotations
-    - @RestController: A specialized annotation that combines @Controller and @ResponseBody. It indicates that the class handles REST API endpoints.
+  - Marks the primary key of the entity.
 
-    - @RequestMapping: Maps HTTP requests to handler methods. Can be placed at both the class and method level.
-    ```
-    @RestController
-    @RequestMapping("/api/users")
-    public class UserController {
+- `@GeneratedValue(strategy = GenerationType.IDENTITY)`
 
-        @GetMapping("/{id}")
-        public User getUser(@PathVariable Long id) {
-            // ...
-        }
-    }
-    ```
+  - Configures how the primary key is generated (auto-increment, sequence, etc).
 
-    - @GetMapping / @PostMapping / @PutMapping / @DeleteMapping: Shorthand annotations for handling specific HTTP methods (GET, POST, PUT, DELETE).
+- `@Column(name = "column_name", nullable = false, unique = true)`
 
-- Other Common Annotations
-    - @Autowired: Injects a bean (component) automatically by type.
-    - @Service: Indicates that the annotated class holds the business logic.
-    - @Repository: Indicates that the annotated class is a repository (usually data access objects).
-    - @Configuration: Indicates that a class declares one or more @Bean methods. It can be processed by the Spring container to generate bean definitions.
-    - @Bean: Indicates that a method produces a bean to be managed by the Spring container.
+  - Customizes the mapping between the class field and database column.
+
+- `@ManyToOne`, `@OneToMany`, `@OneToOne`, `@ManyToMany`
+
+  - Define relationships between entities.
+  - Example: `@ManyToOne` means many entities relate to one of another type.
+
+- `@JoinColumn(name = "foreign_key_column")`
+
+  - Specifies the foreign key column used in relationships.
+
+- `@Transient`
+  - Tells JPA to ignore this field when persisting to the database.
+
+---
+
+## Service Layer Annotations
+
+- `@Service`
+
+  - Marks a class as a service layer bean, used for business logic.
+  - Allows Spring to auto-detect it for dependency injection.
+
+- `@Transactional`
+  - Wraps the method or class in a database transaction.
+  - Ensures that DB operations either fully succeed or fully fail together.
+
+---
+
+## Controller Layer Annotations (Spring MVC)
+
+- `@RestController`
+
+  - Combines `@Controller` and `@ResponseBody`.
+  - Indicates the class handles REST API requests and responses as JSON.
+
+- `@RequestMapping("/api")`
+
+  - Maps HTTP requests to controller methods.
+  - Can be used at class or method level.
+
+- `@GetMapping`, `@PostMapping`, `@PutMapping`, `@DeleteMapping`
+
+  - Specialized versions of `@RequestMapping` for specific HTTP methods.
+
+- `@PathVariable`
+
+  - Binds a URI template variable to a method parameter.
+  - Example: `/users/{id}` → `@PathVariable Long id`.
+
+- `@RequestParam`
+
+  - Extracts query parameters from the URL.
+  - Example: `/search?name=John` → `@RequestParam String name`.
+
+- `@RequestBody`
+  - Binds the incoming JSON request body to a method parameter.
+
+---
+
+## Test Layer Annotations
+
+- `@SpringBootTest`
+
+  - Starts the full Spring application context for integration testing.
+
+- `@WebMvcTest(controllers = YourController.class)`
+
+  - Focuses on controller layer, doesn't start the full context.
+
+- `@MockBean`
+  - Replaces a bean in the application context with a Mockito mock.
+
+---
+
+## Miscellaneous Annotations
+
+- `@Autowired`
+
+  - Automatically injects dependencies into a class.
+
+- `@Component`
+
+  - Marks a class as a Spring-managed component.
+
+- `@Configuration`
+
+  - Indicates a class contains Spring configuration methods.
+
+- `@Bean`
+  - Declares a method that returns a Spring bean to be managed by the Spring container.
+
+```
 
 ## 2. explain how the below annotaitons specify the table in database?
 ```
+
 @Column(columnDefinition = "varchar(255) default 'John Snow'")
 private String name;
 @Column(name="STUDENT_NAME", length=50, nullable=false, unique=false)
 private String studentName;
-```
-- @Column(columnDefinition = "varchar(255) default 'John Snow'" )
-    - columnDefinition directly provides the SQL definition for the column.
-    - Here, it specifies a VARCHAR(255) column with a default value of "John Snow".
-    - If no value is set for name upon insertion, it defaults to "John Snow".
-    - By default, if name is the field name, the column will also be named name in the table.
 
-- @Column(name = "STUDENT_NAME", length = 50, nullable = false, unique = false)
-    - name="STUDENT_NAME" tells JPA to use "STUDENT_NAME" as the column name in the database instead of studentName.
-    - length=50 sets the VARCHAR length to 50.
-    - nullable=false enforces a NOT NULL constraint, making the field required.
-    - unique=false allows duplicate values in the column.
+### 1. `@Column(columnDefinition = "varchar(255) default 'John Snow'")`
 
+- This annotation is customizing the exact SQL that will be used to define the column.
+- `columnDefinition` allows you to specify the full column type manually.
+- In this case:
+  - The column will be of type `varchar(255)`
+  - Its default value will be `'John Snow'`
+- This is useful when you want precise control over how the column is created in the database.
+
+### 2. `@Column(name="STUDENT_NAME", length=50, nullable=false, unique=false)`
+
+- This annotation allows fine-grained control over the column properties:
+  - `name="STUDENT_NAME"`: Sets the column name to `STUDENT_NAME` instead of using the Java field name.
+  - `length=50`: Limits the maximum length of the string to 50 characters.
+  - `nullable=false`: The column cannot be null (i.e., it is required).
+  - `unique=false`: Duplicate values are allowed in this column.
+
+In summary, these annotations are part of the JPA (Java Persistence API) and allow you to define how the class fields should be mapped to columns in the database table, including name, type, length, constraints, and default values.
+
+````
 ## 3. What is the default column naming convention for @Column?
-- When you simply use @Column without specifying the column name, the default naming strategy typically takes the field name and applies a certain convention. By default:
-```
+- When you use `@Column` without specifying a `name`, JPA uses a default naming convention based on the field name.
+
+### Default Behavior:
+- The field name in camelCase is typically converted to **SNAKE_CASE** for the database column.
+- This conversion depends on the **JPA naming strategy** being used.
+
+### Examples:
+```java
 @Column
-private String firstName;       // Maps to a column: FIRST_NAME
+private String firstName;
+// Maps to column: FIRST_NAME
+
 @Column
-private String operatingSystem; // Maps to a column: OPERATING_SYSTEM
-```
-- Spring (through JPA’s default naming strategy) often transforms camelCase field names into snake_case uppercase columns. For example, firstName becomes FIRST_NAME and operatingSystem becomes OPERATING_SYSTEM in most default configurations.
+private String operatingSystem;
+// Maps to column: OPERATING_SYSTEM
+````
 
 ## 4. What are the layers in springboot application? what is the role of each layer?
-- **Presentation Layer (Controller Layer)**: 
-    - Entry point for handling HTTP requests.
-    - Manages interaction between clients and the application by receiving requests, calling the service layer, and returning responses.
-- **Service Layer (Business Logic Layer)**: 
-    - Contains the core business logic of the application.
-    - Orchestrates data flow between the controller and repository, applying business rules and handling transactions.
-- **Repository Layer (Data Access Layer)**: 
-    - Encapsulates data persistence logic. 
-    - Provides methods for CRUD operations and custom queries.
-- **Model Layer (Entity Layer)**: 
-    - Defines the structure of the data with entity classes representing database tables.
-    - Often includes DTOs (Data Transfer Objects) for transferring data between layers.
+
+```
+
+A typical Spring Boot application follows a layered architecture. The main layers are:
+
+---
+
+### 1. Controller Layer (Presentation Layer)
+- **Role**: Handles incoming HTTP requests and returns responses.
+- **Responsibility**: Acts as the interface between the client and the server-side application.
+- **Common annotations**: `@RestController`, `@RequestMapping`, `@GetMapping`, `@PostMapping`, etc.
+- **Example**:
+
+
+---
+
+### 2. Service Layer (Business Logic Layer)
+- **Role**: Contains the core business logic of the application.
+- **Responsibility**: Handles operations that don't directly involve the database but require processing.
+- **Common annotations**: `@Service`, `@Transactional`
+- **Example**:
+
+
+---
+
+### 3. Repository Layer (Data Access Layer)
+- **Role**: Interacts with the database.
+- **Responsibility**: Encapsulates the logic required to access data sources.
+- **Common annotations**: `@Repository`, `@Query`
+- **Typically uses**: Spring Data JPA or other persistence tools.
+- **Example**:
+
+
+---
+
+### 4. Model Layer (Entity Layer)
+- **Role**: Defines the structure of the data.
+- **Responsibility**: Maps Java objects to database tables using JPA.
+- **Common annotations**: `@Entity`, `@Table`, `@Id`, `@Column`, etc.
+- **Example**:
+
+
+---
+
+### Summary:
+- **Controller Layer** → Handles HTTP requests and routes them to the service.
+- **Service Layer** → Handles business logic and calls the repository.
+- **Repository Layer** → Handles database operations.
+- **Model Layer** → Maps to the actual database schema.
+
+This layered architecture promotes separation of concerns, making the codebase more maintainable and testable.
+```
 
 ## 5. Describe the flow in all of the layers if an API is called by Postman.
-- Client (Postman) sends HTTP request (e.g., POST /api/users) with JSON data.
-- Spring Boot DispatcherServlet receives the request and routes it to the appropriate controller based on URL and method.
-- Controller
-    - Accepts the request.
-    - Converts the incoming JSON payload to a DTO or entity.
-    - Validates the input.
-    - Calls methods in the Service layer.
-- Service layer
-    - Implements the business logic.
-    - Transforms DTOs to Entities as needed.
-    - Interacts with the Repository layer to perform data operations.
-- Repository layer
-    - Executes the actual queries (CRUD operations) against the database.
-    - Returns the results to the Service layer.
-- Database
-    - Persists or retrieves the requested data and returns it to the repository.
-- Service layer
-    - Receives the results from the repository.
-    - Applies further business rules if needed.
-    - Converts Entities back to DTOs (if using DTOs).
-- Controller
-    - Receives the final result from the service layer.
-    - Wraps it in an appropriate HTTP response (e.g., ResponseEntity).
-- Client (Postman)
-    - Receives the JSON response from the server.
+
+````
+## 5. Describe the Flow in All of the Layers if an API Is Called by Postman
+
+When you send an API request (e.g., a POST or GET request) using Postman, the request goes through the following layers in a Spring Boot application:
+
+---
+
+### Step-by-Step Flow:
+
+1. **Client (Postman) Sends HTTP Request**
+   - Example: A GET request to `http://localhost:8080/api/users/1`
+   - The request includes headers, parameters, and optionally a JSON body.
+
+---
+
+2. **Controller Layer (Presentation Layer)**
+   - The request hits a controller method mapped to the URL.
+   - Spring Boot uses annotations like `@GetMapping`, `@PostMapping`, etc., to match the request.
+   - The controller extracts inputs (`@PathVariable`, `@RequestBody`, etc.) and delegates the call to the service layer.
+
+
+
+---
+
+3. **Service Layer (Business Logic Layer)**
+   - The controller calls a method in the service class.
+   - The service class processes any business logic (e.g., validation, calculations, conditional logic).
+   - It then calls the repository layer to fetch or modify data.
+
+
+---
+
+4. **Repository Layer (Data Access Layer)**
+   - The service calls a repository interface (usually extending `JpaRepository`).
+   - Spring Data JPA automatically generates the query or uses custom `@Query` if defined.
+   - The repository communicates with the database and returns the result to the service layer.
+
+
+---
+
+5. **Model Layer (Entity Layer)**
+   - The repository fetches or saves `@Entity` objects mapped to a database table.
+   - These entity objects represent the actual data stored in the database.
+
+---
+
+6. **Response Back to Controller**
+   - The repository returns data to the service layer.
+   - The service layer returns data (or a DTO) to the controller.
+   - The controller returns a response (typically JSON) to Postman.
+
+---
+
+7. **Postman Receives HTTP Response**
+   - The client sees the HTTP status (200 OK, 201 Created, 404 Not Found, etc.).
+   - The body contains the JSON response with data or error details.
+
+---
+
+### Summary:
+
+**Postman → Controller → Service → Repository → Database → Entity → Repository → Service → Controller → Postman**
+
+Each layer has a clear responsibility, and this structure helps keep code clean, maintainable, and testable.
+
+```
+
+
 
 ## 6. What is the application.properties? do you know application.yml?
-In Spring Boot, configuration properties can be placed in either application.properties or application.yml. Both formats serve the same purpose: to configure database connections, server ports, and other environment-specific settings.
-
-Example application.properties:
 ```
-# Database Configuration
+
+### `application.properties`:
+- This is the **default configuration file** used in Spring Boot to define application-level settings.
+- It is placed in the `src/main/resources` folder.
+- Settings in this file control things like:
+  - Server port
+  - Database connection
+  - Logging levels
+  - Custom application values
+- Example:
+```properties
+server.port=8081
 spring.datasource.url=jdbc:mysql://localhost:3306/mydb
 spring.datasource.username=root
-spring.datasource.password=root
-spring.jpa.hibernate.ddl-auto=update
+spring.datasource.password=secret
+logging.level.org.springframework=DEBUG
+```
 
-# Server Configuration
-server.port=8080
-server.servlet.context-path=/api
-```
-Example application.yml:
-```
+---
+
+### `application.yml`:
+- An **alternative to `application.properties`** using YAML (YAML Ain’t Markup Language) syntax.
+- It is also placed in `src/main/resources`.
+- Preferred by some developers for its **nested structure and readability**.
+- Example (equivalent to the above):
+```yaml
+server:
+  port: 8081
+
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/mydb
     username: root
-    password: root
-  jpa:
-    hibernate:
-      ddl-auto: update
+    password: secret
 
-server:
-  port: 8080
-  servlet:
-    context-path: /api
+logging:
+  level:
+    org.springframework: DEBUG
 ```
 
-## 7. What’s the naming differences between GraphQL vs. REST ? Why is the differences ? 
-REST Naming Conventions: Typically uses nouns and HTTP verbs in a URL path
+---
+
+### Summary:
+- Both files serve the same purpose: configuring your Spring Boot app.
+- Use **`.properties`** for simplicity and **`.yml`** for structured, hierarchical configs.
+- You can use either one, but avoid mixing both to keep things consistent.
 ```
-GET    /api/users               # Get all users
-GET    /api/users/{id}          # Get specific user
-POST   /api/users               # Create user
-PUT    /api/users/{id}          # Update user
-DELETE /api/users/{id}          # Delete user
-GET    /api/users/{id}/posts    # Get user's posts
+
+
+## 7. What’s the naming differences between GraphQL vs. REST ? Why is the differences ?
+
 ```
-GraphQL Naming Conventions: Uses a schema with types, queries, and mutations
-```
-type Query {
-  users: [User]
-  user(id: ID): User
+
+
+### Naming Differences:
+
+#### REST:
+- **Resource-oriented naming**.
+- Uses **nouns** to represent resources and **HTTP methods** to perform actions.
+- Example endpoints:
+  - `GET /users` → Get list of users
+  - `GET /users/1` → Get user with ID 1
+  - `POST /users` → Create a new user
+  - `PUT /users/1` → Update user with ID 1
+  - `DELETE /users/1` → Delete user with ID 1
+
+#### GraphQL:
+- **Action-oriented naming**.
+- Uses **fields and types**, usually grouped under **queries** or **mutations**.
+- Example operations:
+```graphql
+# Query
+{
+  user(id: 1) {
+    id
+    name
+    email
+  }
 }
 
-type Mutation {
-  createUser(input: CreateUserInput): User
-  updateUser(id: ID, input: UpdateUserInput): User
-  deleteUser(id: ID): Boolean
-}
-
-type User {
-  id: ID
-  name: String
-  posts: [Post]
+# Mutation
+mutation {
+  createUser(name: "Alice", email: "alice@example.com") {
+    id
+    name
+  }
 }
 ```
-Why the difference?
-- In REST, the focus is on resources and endpoints. Each endpoint corresponds to a resource (e.g., /users) and an HTTP method indicates the type of operation.
-- In GraphQL, you define a strongly-typed schema and ask for exactly the data you need via queries and mutations. There is only one endpoint (usually /graphql), and the queries or mutations specify the data you want or the changes you need to make.
+- Each field name (like `createUser`, `user`) is descriptive of the operation.
 
-## 8. Provide 2 real-world examples of N+1 problem in REST that can be solved by GraphQL. 
-- E-commerce product reviews
-    - REST Example (N+1 Problem)
-    ```
-    GET /api/products
-    [
-      { id: 1, name: "iPhone" },
-      { id: 2, name: "Samsung" }
-    ]
+---
 
-    # For each product returned, make additional requests for reviews:
-    GET /api/products/1/reviews
-    GET /api/products/2/reviews
-    ```
-    - GraphQL Solution
-    ```
-    query {
-      products {
-        id
-        name
-        reviews {
-          id
-          rating
-          comment
-        }
-      }
-    }
-    ```
-    - A single GraphQL request can fetch both product and related reviews at once, avoiding multiple round trips.
+### Why the Difference?
 
-- Social media user posts with comments
-    - REST Example (N+1 Problem)
-    ```
-    GET /api/users
-    [
-      { id: 1, name: "John" },
-      { id: 2, name: "Mary" }
-    ]
+#### REST:
+- Designed around resources and HTTP verbs.
+- Relies on **standard HTTP operations** (GET, POST, PUT, DELETE).
+- URL path defines **what resource** is being accessed.
+- Emphasizes separation of client and server, with rigid endpoint structures.
 
-    # Then for each user:
-    GET /api/users/1/posts
-    GET /api/users/2/posts
+#### GraphQL:
+- Designed for **flexibility and efficiency**.
+- Client **asks exactly for the data it needs**, all in a single endpoint (`/graphql`).
+- Focuses on **actions and queries**, not URL paths or HTTP verbs.
+- Encourages **descriptive function-style naming** to express what the client wants.
 
-    # And for each post:
-    GET /api/posts/1/comments
-    GET /api/posts/2/comments
-    ```
-    - GraphQL Solution
-    ```
-    query {
-      users {
-        id
-        name
-        posts {
-          id
-          content
-          comments {
-            id
-            text
-            author
-          }
-        }
-      }
-    }
-    ```
-    - Again, one query can pull users, their posts, and comments in a single round trip, eliminating the N+1 overhead.
+---
 
+### Summary:
+| Aspect           | REST Naming                 | GraphQL Naming                    |
+|------------------|-----------------------------|-----------------------------------|
+| Structure        | Resource-based (nouns)       | Action-based (functions/fields)   |
+| Example          | `GET /users/1`              | `user(id: 1)`                      |
+| Request format   | URL paths + HTTP verbs       | Queries/Mutations in request body |
+| Endpoint count   | Many (one per action)        | One (`/graphql`)                  |
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-### 1. create a file to list all of the annotaitons you learned and known, and explain the usage and how do you understand it. you need to update it when you learn a new annotation. Please organize those annotations.well, like annotations used by entity, annotations used by controller.
-**1. File name: annotations.md**
-**2. you'd better also list a code example under the annotations.**
-
-### 2. explain how the below annotaitons specify the table in database?
+The naming difference exists because **REST is protocol-driven**, while **GraphQL is schema-driven** and designed to let clients control the structure of responses.
 ```
-@Column(columnDefinition = "varchar(255) default 'John Snow'")
-private String name; // specify column called name in Database with type varchar(255) and default value "John Snow"
-@Column(name="STUDENT_NAME", length=50, nullable=false, unique=false)
-private String studentName;// specify column called STUDENT_NAME in Database with type char(50), not null, and can have the same value"
-```
-
-### What is the default column names of the table in database for @Column ?
-```
-@Column
-private String firstName; Column name: firstName --case-sensitive
-@Column
-private String operatingSystem; Column name: operatingSystem --case-sensitive
-```
-### 4. What are the layers in springboot application? what is the role of each layer?
-- 1. Controller: Model and View Controller, accpet api calls.
-- 2. Service: Business logic
-- 3. Repository: Interact with database
-- 4. Entity: Interact with repository
-- 5. Payload: Interact with api calls
-### 5. Describe the flow in all of the layers if an API is called by Postman.
-- Postman (api call with some payloads) -> Controller (accept api call and payloads) -> Service (accept payloads, do business logic, and convert payloads to Entity) -> Repository (use Entity to interact with the database) -> Service (convert result back to payload) -> Controller (return result) -> Postman.
-### 6. What is the application.properties? do you know application.yml?
-- In a Spring Boot application, application.properties is a default properties file used to configure various settings such as server port, database connections, logging, and more.
-- You can define key-value pairs (e.g., server.port=8080) to specify how the application should run.
-- application.yml serves the same purpose as application.properties but uses YAML syntax instead of simple key-value pairs.
-### 7. What’s the naming differences between GraphQL vs. REST ? Why is the differences ?
-- **Naming in REST**
-
-- **Resource-centric:** Endpoints typically use plural nouns to represent resources (e.g., /users, /orders), and HTTP verbs (GET, POST, PUT, DELETE) define the action.
-- **Multiple URLs:** You often have distinct URLs for different operations or nested resources, like /users/{id}/posts.
-Naming in GraphQL
-
-- **Schema-centric:** You define types (e.g., User, Order) and fields (e.g., name, price), then access them via queries or mutations in a single endpoint (usually /graphql).
-- **Single URL:** Operations (queries/mutations) are identified by the type and field names rather than separate endpoints.
-- **Why the Differences?**
-
-- **REST** is designed around resources and uses distinct endpoints for different operations.
-- **GraphQL** is designed around a type system, allowing clients to specify exactly what data (fields) they need from a single endpoint. This schema-based approach changes how we name and organize data—focusing on fields and types rather than nouns and URLs.
-### 8. Provide 2 real-world examples of N+1 problem in REST that can be solved by GraphQL.
-- Example 1: Blog Posts & Authors
-- In a REST setup, you might call /posts to get a list of posts, then for each post call /authors/{id} to fetch the author’s details, causing multiple round trips (N+1 calls). 
-
-- Example 2: Orders & Items
-- In an e-commerce REST API, you’d first call /orders to get all orders, then for each order call /items/{id} repeatedly to fetch item details. 
-
+````
